@@ -180,11 +180,6 @@ const routesConfig = [
         path: '/guides/does-this-replace-client-state',
         editUrl: '/guides/does-this-replace-client-state.md',
       },
-      {
-        title: 'Migrating to Vue Query 3',
-        path: '/guides/migrating-to-vue-query-3',
-        editUrl: '/guides/migrating-to-vue-query-3.md',
-      },
     ],
   },
   {
