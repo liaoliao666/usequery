@@ -8,7 +8,7 @@ module.exports = {
   description: pkg.description,
 
   themeConfig: {
-    repo: 'vuejs/vitepress',
+    repo: 'liaoliao666/vue-query',
     docsDir: 'docs',
 
     editLinks: true,
