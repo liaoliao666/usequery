@@ -6,7 +6,7 @@ title: hydration/dehydrate
 `dehydrate` creates a frozen representation of a `cache` that can later be hydrated with `Hydrate`, `useHydrate`, or `hydrate`. This is useful for passing prefetched queries from server to client or persisting queries to localstorage or other persisten locations. It only includes currently successful queries by default.
 
 ```js
-import { dehydrate } from 'vue-query/hydration'
+import { dehydrate } from 'vuequery/hydration'
 
 const dehydratedState = dehydrate(queryClient, {
   shouldDehydrateQuery,

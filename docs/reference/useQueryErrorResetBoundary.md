@@ -6,7 +6,7 @@ title: useQueryErrorResetBoundary
 This hook will reset any query errors within the closest `QueryErrorResetBoundary`. If there is no boundary defined it will reset them globally:
 
 ```js
-import { useQueryErrorResetBoundary } from 'vue-query'
+import { useQueryErrorResetBoundary } from 'vuequery'
 import { ErrorBoundary } from 'vue-error-boundary'
 
 const App: Vue.FC = () => {

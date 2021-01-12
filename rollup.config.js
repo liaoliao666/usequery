@@ -23,7 +23,7 @@ export default [
   {
     input: inputSrc,
     output: {
-      file: 'dist/vue-query.mjs',
+      file: 'dist/vuequery.mjs',
       format: 'es',
       sourcemap: true,
     },
@@ -38,7 +38,7 @@ export default [
   {
     input: inputSrc,
     output: {
-      file: 'dist/vue-query.min.mjs',
+      file: 'dist/vuequery.min.mjs',
       format: 'es',
       sourcemap: true,
     },
@@ -55,7 +55,7 @@ export default [
     input: inputSrc,
     output: {
       name: 'VueQuery',
-      file: 'dist/vue-query.development.js',
+      file: 'dist/vuequery.development.js',
       format: 'umd',
       sourcemap: true,
       globals,
@@ -72,7 +72,7 @@ export default [
     input: inputSrc,
     output: {
       name: 'VueQuery',
-      file: 'dist/vue-query.production.min.js',
+      file: 'dist/vuequery.production.min.js',
       format: 'umd',
       sourcemap: true,
       globals,

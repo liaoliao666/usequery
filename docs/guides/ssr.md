@@ -55,8 +55,8 @@ To support caching queries on the server and set up hydration:
 
 ```js
 // _app.jsx
-import { QueryClient, QueryClientProvider } from 'vue-query'
-import { Hydrate } from 'vue-query/hydration'
+import { QueryClient, QueryClientProvider } from 'vuequery'
+import { Hydrate } from 'vuequery/hydration'
 
 const queryClient = new QueryClient()
 
@@ -79,8 +79,8 @@ Now you are ready to prefetch some data in your pages with either [`getStaticPro
 
 ```js
 // pages/posts.jsx
-import { QueryClient, useQuery } from 'vue-query'
-import { dehydrate } from 'vue-query/hydration'
+import { QueryClient, useQuery } from 'vuequery'
+import { dehydrate } from 'vuequery/hydration'
 
 export async function getStaticProps() {
   const queryClient = new QueryClient()
@@ -126,8 +126,8 @@ This guide is at-best, a high level overview of how SSR with Vue Query should wo
 > SECURITY NOTE: Serializing data with `JSON.stringify` can put you at risk for XSS-vulnerabilities, [this blog post explains why and how to solve it](https://medium.com/node-security/the-most-common-xss-vulnerability-in-vue-js-applications-2bdffbcc1fa0)
 
 ```js
-import { QueryClient, QueryClientProvider } from 'vue-query'
-import { dehydrate, Hydrate } from 'vue-query/hydration'
+import { QueryClient, QueryClientProvider } from 'vuequery'
+import { dehydrate, Hydrate } from 'vuequery/hydration'
 
 const queryClient = new QueryClient()
 await queryClient.prefetchQuery('key', fn)
@@ -160,8 +160,8 @@ res.send(`
 - Render your app with the client provider and also **using the dehydrated state. This is extremely important! You must render both server and client using the same dehydrated state to ensure hydration on the client produces the exact same markup as the server.**
 
 ```js
-import { QueryClient, QueryClientProvider } from 'vue-query'
-import { Hydrate } from 'vue-query/hydration'
+import { QueryClient, QueryClientProvider } from 'vuequery'
+import { Hydrate } from 'vuequery/hydration'
 
 const dehydratedState = window.__REACT_QUERY_STATE__
 

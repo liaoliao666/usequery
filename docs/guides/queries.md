@@ -5,7 +5,7 @@ title: Queries
 
 ## Query Basics
 
-A query is a declarative dependency on an asynchronous source of data that is tied to a **unique key**. A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server. If your method modifies data on the server, we recommend using [Mutations](https://vue-query.tanstack.com/docs/guides/mutations) instead.
+A query is a declarative dependency on an asynchronous source of data that is tied to a **unique key**. A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server. If your method modifies data on the server, we recommend using [Mutations](https://vuequery.tanstack.com/docs/guides/mutations) instead.
 
 To subscribe to a query in your components or custom hooks, call the `useQuery` hook with at least:
 
@@ -15,7 +15,7 @@ To subscribe to a query in your components or custom hooks, call the `useQuery` 
   - Throws an error
 
 ```js
-import { useQuery } from 'vue-query'
+import { useQuery } from 'vuequery'
 
 function App() {
   const info = useQuery('todos', fetchTodoList)

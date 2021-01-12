@@ -18,7 +18,7 @@ Its available methods are:
 `setEventListener` can be used to set a custom event listener:
 
 ```js
-import { focusManager } from 'vue-query'
+import { focusManager } from 'vuequery'
 
 focusManager.setEventListener(handleFocus => {
   // Listen to visibillitychange and focus
@@ -40,7 +40,7 @@ focusManager.setEventListener(handleFocus => {
 `setFocsued` can be used to manually set the focus state. Set `undefined` to fallback to the default focus check.
 
 ```js
-import { focusManager } from 'vue-query'
+import { focusManager } from 'vuequery'
 
 // Set focused
 focusManager.setFocused(true)

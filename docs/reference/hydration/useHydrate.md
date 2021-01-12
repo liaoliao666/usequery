@@ -6,7 +6,7 @@ title: hydration/useHydrate
 `useHydrate` adds a previously dehydrated state into the `queryClient` that would be returned by `useQueryClient()`. If the client already contains data, the new queries will be intelligently merged based on update timestamp.
 
 ```jsx
-import { useHydrate } from 'vue-query/hydration'
+import { useHydrate } from 'vuequery/hydration'
 
 useHydrate(dehydratedState, options)
 ```

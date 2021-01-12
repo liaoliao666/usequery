@@ -8,7 +8,7 @@ The `QueryCache` is the storage mechanism for Vue Query. It stores all of the da
 **Normally, you will not interact with the QueryCache directly and instead use the `QueryClient` for a specific cache.**
 
 ```js
-import { QueryCache } from 'vue-query'
+import { QueryCache } from 'vuequery'
 
 const queryCache = new QueryCache()
 const query = queryCache.find('posts')

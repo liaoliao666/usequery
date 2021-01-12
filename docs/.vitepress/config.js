@@ -2,13 +2,13 @@ const pkg = require('../../package.json')
 const getSidebar = require('./utils/routes')
 
 module.exports = {
-  base: '/vue-query/',
+  base: '/vuequery/',
   lang: 'en-US',
   title: pkg.name,
   description: pkg.description,
 
   themeConfig: {
-    repo: 'liaoliao666/vue-query',
+    repo: 'liaoliao666/vuequery',
     docsDir: 'docs',
 
     editLinks: true,
