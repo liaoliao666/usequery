@@ -1,0 +1,1 @@
+import{l as n,f as s,G as a}from"./framework.dc3bd9a4.js";const t='{"title":"Quick Start","description":"","frontmatter":{"id":"quick-start","title":"Quick Start"},"relativePath":"quick-start.md","lastUpdated":1610472514943}',p={},o=a('',4);p.render=function(a,t,p,e,c,u){return n(),s("div",null,[o])};export default p;export{t as __pageData};
