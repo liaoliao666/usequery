@@ -6,7 +6,7 @@ title: hydration/hydrate
 `hydrate` adds a previously dehydrated state into a `cache`. If the queries included in dehydration already exist in the queryCache, `hydrate` does not overwrite them.
 
 ```js
-import { hydrate } from 'vuequery/hydration'
+import { hydrate } from 'usequery/hydration'
 
 hydrate(queryClient, dehydratedState, options)
 ```

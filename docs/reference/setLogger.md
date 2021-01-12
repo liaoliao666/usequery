@@ -10,7 +10,7 @@ title: setLogger
 Examples:
 
 ```js
-import { setLogger } from 'vuequery'
+import { setLogger } from 'usequery'
 import { printLog, printWarn, printError } from 'custom-logger'
 
 // Custom logger

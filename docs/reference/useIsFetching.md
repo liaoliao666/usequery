@@ -6,7 +6,7 @@ title: useIsFetching
 `useIsFetching` is an optional hook that returns the `number` of the queries that your application is loading or fetching in the background (useful for app-wide loading indicators).
 
 ```js
-import { useIsFetching } from 'vuequery'
+import { useIsFetching } from 'usequery'
 // How many queries are fetching?
 const isFetching = useIsFetching()
 // How many queries matching the posts prefix are fetching?

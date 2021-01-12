@@ -8,7 +8,7 @@ title: QueryClient
 The `QueryClient` can be used to interact with a cache:
 
 ```js
-import { QueryClient } from 'vuequery'
+import { QueryClient } from 'usequery'
 
 const queryClient = new QueryClient({
   defaultOptions: {

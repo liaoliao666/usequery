@@ -6,7 +6,7 @@ title: useQueryClient
 The `useQueryClient` hook returns the current `QueryClient` instance.
 
 ```js
-import { useQueryClient } from 'vuequery'
+import { useQueryClient } from 'usequery'
 
 const queryClient = useQueryClient()
 ```

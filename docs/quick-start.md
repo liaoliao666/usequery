@@ -16,7 +16,7 @@ import {
   useQueryClient,
   QueryClient,
   QueryClientProvider,
-} from 'vuequery'
+} from 'usequery'
 import { getTodos, postTodo } from '../my-api'
 
 // Create a client

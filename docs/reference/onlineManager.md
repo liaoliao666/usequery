@@ -19,7 +19,7 @@ Its available methods are:
 
 ```js
 import NetInfo from '@vue-native-community/netinfo'
-import { onlineManager } from 'vuequery'
+import { onlineManager } from 'usequery'
 
 onlineManager.setEventListener(setOnline => {
   return NetInfo.addEventListener(state => {
@@ -33,7 +33,7 @@ onlineManager.setEventListener(setOnline => {
 `setOnline` can be used to manually set the online state. Set `undefined` to fallback to the default online check.
 
 ```js
-import { onlineManager } from 'vuequery'
+import { onlineManager } from 'usequery'
 
 // Set to online
 onlineManager.setOnline(true)

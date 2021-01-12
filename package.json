@@ -1,5 +1,5 @@
 {
-  "name": "vuequery",
+  "name": "usequery",
   "version": "0.0.0",
   "description": "🌈 Composables api for fetching, caching and updating asynchronous data in Vue 3",
   "main": "lib/index.js",
