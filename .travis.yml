@@ -14,4 +14,4 @@ deploy:
   github_token: $ACCESS_TOKEN
   keep_history: true
   on:
-    branch: docs
+    branch: master
