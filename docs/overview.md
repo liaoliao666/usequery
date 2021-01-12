@@ -47,7 +47,7 @@ In the example below, you can see Vue Query in its most basic and simple form be
 [Open in CodeSandbox](https://codesandbox.io/s/github/tannerlinsley/react-query/tree/master/examples/simple)
 
 ```js
-import { QueryClient, QueryClientProvider, useQuery } from 'usequery'
+import { QueryClient, QueryClientProvider, useQuery } from 'v-use-query'
 
 const queryClient = new QueryClient()
 

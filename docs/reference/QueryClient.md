@@ -8,7 +8,7 @@ title: QueryClient
 The `QueryClient` can be used to interact with a cache:
 
 ```js
-import { QueryClient } from 'usequery'
+import { QueryClient } from 'v-use-query'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,7 +88,7 @@ try {
 
 **Options**
 
-The options for `fetchQuery` are exactly the same as those of [`useQuery`](#usequery).
+The options for `fetchQuery` are exactly the same as those of [`useQuery`](#v-use-query).
 
 **Returns**
 
@@ -131,7 +131,7 @@ await queryClient.prefetchQuery(queryKey)
 
 **Options**
 
-The options for `prefetchQuery` are exactly the same as those of [`useQuery`](#usequery).
+The options for `prefetchQuery` are exactly the same as those of [`useQuery`](#v-use-query).
 
 **Returns**
 

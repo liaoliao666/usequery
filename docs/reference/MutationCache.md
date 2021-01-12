@@ -8,7 +8,7 @@ The `MutationCache` is the storage for mutations.
 **Normally, you will not interact with the MutationCache directly and instead use the `QueryClient`.**
 
 ```js
-import { MutationCache } from 'usequery'
+import { MutationCache } from 'v-use-query'
 
 const mutationCache = new MutationCache()
 ```

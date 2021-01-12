@@ -1,5 +1,5 @@
 ---
-id: migrating-to-usequery-3
+id: migrating-to-v-use-query-3
 title: Migrating to Vue Query 3
 ---
 
@@ -19,8 +19,8 @@ Previous versions of Vue Query were awesome and brought some amazing new feature
 - Retry/offline/replay support for mutations
 - Observe queries/mutations outside of Vue
 - Use the Vue Query core logic anywhere you want!
-- Bundled/Colocated Devtools via `usequery/devtools`
-- Cache Persistence to localstorage (experimental via `usequery/persist-localstorage-experimental`)
+- Bundled/Colocated Devtools via `v-use-query/devtools`
+- Cache Persistence to localstorage (experimental via `v-use-query/persist-localstorage-experimental`)
 
 ## Breaking Changes
 
@@ -39,7 +39,7 @@ This has some benefits:
 When creating a `new QueryClient()`, a `QueryCache` and `MutationCache` are automatically created for you if you don't supply them.
 
 ```js
-import { QueryClient } from 'usequery'
+import { QueryClient } from 'v-use-query'
 
 const queryClient = new QueryClient()
 ```
@@ -64,7 +64,7 @@ const queryClient = new QueryClient({
 The `QueryClientProvider` component is now used to connect a `QueryClient` to your application:
 
 ```js
-import { QueryClient, QueryClientProvider } from 'usequery'
+import { QueryClient, QueryClientProvider } from 'v-use-query'
 
 const queryClient = new QueryClient()
 
@@ -155,7 +155,7 @@ useInfiniteQuery(['posts'], ({ pageParam = 0 }) => fetchPost(pageParam))
 The new `keepPreviousData` options is available for both `useQuery` and `useInfiniteQuery` and will have the same "lagging" effect on your data:
 
 ```js
-import { useQuery } from 'usequery'
+import { useQuery } from 'v-use-query'
 
 function Page({ page }) {
   const { data } = useQuery(['page', page], fetchPage, {
@@ -353,7 +353,7 @@ With these new options it is possible to configure when a component should re-re
 Only re-render when the `data` or `error` properties change:
 
 ```js
-import { useQuery } from 'usequery'
+import { useQuery } from 'v-use-query'
 
 function User() {
   const { data } = useQuery('user', fetchUser, {
@@ -366,7 +366,7 @@ function User() {
 Prevent re-render when the `isStale` property changes:
 
 ```js
-import { useQuery } from 'usequery'
+import { useQuery } from 'v-use-query'
 
 function User() {
   const { data } = useQuery('user', fetchUser, {
@@ -387,7 +387,7 @@ Because data and errors can be present at the same time, the `updatedAt` propert
 ### `setConsole()` has been replaced by the new `setLogger()` function
 
 ```js
-import { setLogger } from 'usequery'
+import { setLogger } from 'v-use-query'
 
 // Log with Sentry
 setLogger({
@@ -405,7 +405,7 @@ setLogger(winston.createLogger())
 To prevent showing error screens in Vue Native when a query fails it was necessary to manually change the Console:
 
 ```js
-import { setConsole } from 'usequery'
+import { setConsole } from 'v-use-query'
 
 setConsole({
   log: console.log,
@@ -423,7 +423,7 @@ In version 3 **this is done automatically when Vue Query is used in Vue Native**
 The `useQuery` and `useInfiniteQuery` hooks now have a `select` option to select or transform parts of the query result.
 
 ```js
-import { useQuery } from 'usequery'
+import { useQuery } from 'v-use-query'
 
 function User() {
   const { data } = useQuery('user', fetchUser, {
@@ -440,7 +440,7 @@ Set the `notifyOnChangeProps` option to `['data', 'error']` to only re-render wh
 Wish you could run `useQuery` in a loop? The rules of hooks say no, but with the new `useQueries()` hook, you can!
 
 ```js
-import { useQueries } from 'usequery'
+import { useQueries } from 'v-use-query'
 
 function Overview() {
   const results = useQueries([
@@ -552,12 +552,12 @@ const fetches = useIsFetching(['posts'])
 
 #### Core separation
 
-The core of Vue Query is now fully separated from Vue, which means it can also be used standalone or in other frameworks. Use the `usequery/core` entrypoint to only import the core functionality:
+The core of Vue Query is now fully separated from Vue, which means it can also be used standalone or in other frameworks. Use the `v-use-query/core` entrypoint to only import the core functionality:
 
 ```js
-import { QueryClient } from 'usequery/core'
+import { QueryClient } from 'v-use-query/core'
 ```
 
 ### Devtools are now part of the main repo and npm package
 
-The devtools are now included in the `usequery` package itself under the import `usequery/devtools`. Simply replace `usequery-devtools` imports with `usequery/devtools`
+The devtools are now included in the `v-use-query` package itself under the import `v-use-query/devtools`. Simply replace `v-use-query-devtools` imports with `v-use-query/devtools`

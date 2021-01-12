@@ -10,9 +10,9 @@ You can install Vue Query with [NPM](https://npmjs.com),
 ### NPM
 
 ```bash
-$ npm i usequery
+$ npm i v-use-query
 # or
-$ yarn add usequery
+$ yarn add v-use-query
 ```
 
 Vue Query is compatible with Vue v16.8+ and works with ReactDOM and Vue Native.
@@ -24,7 +24,7 @@ Vue Query is compatible with Vue v16.8+ and works with ReactDOM and Vue Native.
 If you're not using a module bundler or package manager we also have a global ("UMD") build hosted on the [unpkg.com](https://unpkg.com) CDN. Simply add the following `<script>` tag to the bottom of your HTML file:
 
 ```html
-<script src="https://unpkg.com/usequery/dist/usequery.production.min.js"></script>
+<script src="https://unpkg.com/v-use-query/dist/v-use-query.production.min.js"></script>
 ```
 
 Once you've added this you will have access to the `window.ReactQuery` object and its exports.

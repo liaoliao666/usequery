@@ -16,7 +16,7 @@ import {
   useQueryClient,
   QueryClient,
   QueryClientProvider,
-} from 'usequery'
+} from 'v-use-query'
 import { getTodos, postTodo } from '../my-api'
 
 // Create a client

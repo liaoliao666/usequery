@@ -10,7 +10,7 @@ title: setLogger
 Examples:
 
 ```js
-import { setLogger } from 'usequery'
+import { setLogger } from 'v-use-query'
 import { printLog, printWarn, printError } from 'custom-logger'
 
 // Custom logger

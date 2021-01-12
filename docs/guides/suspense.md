@@ -11,7 +11,7 @@ Global configuration:
 
 ```js
 // Configure for all queries
-import { QueryClient, QueryClientProvider } from 'usequery'
+import { QueryClient, QueryClientProvider } from 'v-use-query'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +33,7 @@ function Root() {
 Query configuration:
 
 ```js
-import { useQuery } from 'usequery'
+import { useQuery } from 'v-use-query'
 
 // Enable for an individual query
 useQuery(queryKey, queryFn, { suspense: true })
@@ -52,7 +52,7 @@ Query errors can be reset with the `QueryErrorResetBoundary` component or with t
 When using the component it will reset any query errors within the boundaries of the component:
 
 ```js
-import { QueryErrorResetBoundary } from 'usequery'
+import { QueryErrorResetBoundary } from 'v-use-query'
 import { ErrorBoundary } from 'vue-error-boundary'
 
 const App: Vue.FC = () => (
@@ -77,7 +77,7 @@ const App: Vue.FC = () => (
 When using the hook it will reset any query errors within the closest `QueryErrorResetBoundary`. If there is no boundary defined it will reset them globally:
 
 ```js
-import { useQueryErrorResetBoundary } from 'usequery'
+import { useQueryErrorResetBoundary } from 'v-use-query'
 import { ErrorBoundary } from 'vue-error-boundary'
 
 const App: Vue.FC = () => {

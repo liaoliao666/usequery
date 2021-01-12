@@ -65,7 +65,7 @@ function fetchTodoList({ queryKey }) {
 Anywhere the `[queryKey, queryFn, config]` signature is supported throughout Vue Query's API, you can also use an object to express the same configuration:
 
 ```js
-import { useQuery } from 'usequery'
+import { useQuery } from 'v-use-query'
 
 useQuery({
   queryKey: ['todo', 7],
