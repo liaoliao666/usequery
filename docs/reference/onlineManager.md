@@ -3,7 +3,7 @@ id: OnlineManager
 title: OnlineManager
 ---
 
-The `OnlineManager` manages the online state within Vue Query.
+The `OnlineManager` manages the online state within Vu Query.
 
 It can be used to change the default event listeners or to manually change the online state.
 
@@ -18,8 +18,8 @@ Its available methods are:
 `setEventListener` can be used to set a custom event listener:
 
 ```js
-import NetInfo from '@vue-native-community/netinfo'
-import { onlineManager } from 'v-use-query'
+import NetInfo from '@react-native-community/netinfo'
+import { onlineManager } from 'vu-query'
 
 onlineManager.setEventListener(setOnline => {
   return NetInfo.addEventListener(state => {
@@ -33,7 +33,7 @@ onlineManager.setEventListener(setOnline => {
 `setOnline` can be used to manually set the online state. Set `undefined` to fallback to the default online check.
 
 ```js
-import { onlineManager } from 'v-use-query'
+import { onlineManager } from 'vu-query'
 
 // Set to online
 onlineManager.setOnline(true)

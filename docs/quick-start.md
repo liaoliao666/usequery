@@ -3,7 +3,7 @@ id: quick-start
 title: Quick Start
 ---
 
-This example very briefly illustrates the 3 core concepts of Vue Query:
+This example very briefly illustrates the 3 core concepts of Vu Query:
 
 - Queries
 - Mutations
@@ -16,7 +16,7 @@ import {
   useQueryClient,
   QueryClient,
   QueryClientProvider,
-} from 'v-use-query'
+} from 'vu-query'
 import { getTodos, postTodo } from '../my-api'
 
 // Create a client
@@ -71,4 +71,4 @@ function Todos() {
 render(<App />, document.getElementById('root'))
 ```
 
-These three concepts make up most of the core functionality of Vue Query. The next sections of the documentation will go over each of these core concepts in great detail.
+These three concepts make up most of the core functionality of Vu Query. The next sections of the documentation will go over each of these core concepts in great detail.

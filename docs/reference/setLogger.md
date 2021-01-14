@@ -5,12 +5,12 @@ title: setLogger
 
 ## `setLogger`
 
-`setLogger` is an optional function that allows you to replace the default `logger` used by Vue Query to log errors. By default, the `window.console` object is used. If no global `console` object is found in the environment, nothing will be logged.
+`setLogger` is an optional function that allows you to replace the default `logger` used by Vu Query to log errors. By default, the `window.console` object is used. If no global `console` object is found in the environment, nothing will be logged.
 
 Examples:
 
 ```js
-import { setLogger } from 'v-use-query'
+import { setLogger } from 'vu-query'
 import { printLog, printWarn, printError } from 'custom-logger'
 
 // Custom logger

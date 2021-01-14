@@ -6,7 +6,7 @@
     "build": "vuedx-typecheck . && vite build"
   },
   "dependencies": {
-    "v-use-query": "^0.0.10",
+    "vu-query": "^0.0.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {

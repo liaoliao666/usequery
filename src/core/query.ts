@@ -133,7 +133,7 @@ export class Query<
   state: QueryState<TData, TError>
   cacheTime!: number
 
-  private innerState: QueryState<TData, TError>
+  private internalState: QueryState<TData, TError>
   private cache: QueryCache
   private promise?: Promise<TData>
   private gcTimeout?: number
@@ -149,8 +149,11 @@ export class Query<
     this.queryKey = config.queryKey
     this.queryHash = config.queryHash
     this.initialState = config.state || this.getDefaultState(this.options)
-    this.innerState = reactive(this.initialState) as QueryState<TData, TError>
-    this.state = readonly(this.innerState) as QueryState<TData, TError>
+    this.internalState = reactive(this.initialState) as QueryState<
+      TData,
+      TError
+    >
+    this.state = readonly(this.internalState) as QueryState<TData, TError>
     this.scheduleGc()
   }
 
@@ -195,7 +198,7 @@ export class Query<
     updater: Updater<TData | undefined, TData>,
     options?: SetDataOptions
   ): TData {
-    const prevData = this.innerState.data
+    const prevData = this.internalState.data
 
     // Get the new data
     let data = functionalUpdate(updater, prevData)
@@ -434,7 +437,7 @@ export class Query<
   }
 
   private dispatch(action: Action<TData, TError>): void {
-    Object.assign(this.innerState, this.reducer(this.state, action))
+    Object.assign(this.internalState, this.reducer(this.state, action))
 
     this.observers.forEach(observer => {
       observer.onQueryUpdate(action)

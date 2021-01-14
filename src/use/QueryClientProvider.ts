@@ -18,8 +18,14 @@ export interface QueryClientProviderProps {
   client: QueryClient
 }
 
-export const QueryClientProvider = defineComponent<QueryClientProviderProps>({
+export const QueryClientProvider = defineComponent({
   name: 'QueryClientProvider',
+  props: {
+    client: {
+      type: QueryClient,
+      required: true,
+    },
+  },
   setup(props, { slots }) {
     const { client } = props
 
@@ -31,6 +37,6 @@ export const QueryClientProvider = defineComponent<QueryClientProviderProps>({
       client.unmount()
     })
 
-    return slots.default?.()
+    return () => slots.default?.()
   },
 })

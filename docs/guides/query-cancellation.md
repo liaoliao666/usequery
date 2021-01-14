@@ -9,7 +9,7 @@ By default, queries that unmount or become unused before their promises are reso
 - Cancellation APIs may not be available for every query function.
 - If cancellation APIs are available, they typically vary in implementation between utilities/libraries (eg. Fetch vs Axios vs XMLHttpRequest).
 
-But don't worry! If your queries are high-bandwidth or potentially very expensive to download, Vue Query exposes a generic way to **cancel** query requests using a cancellation token or other related API. To integrate with this feature, attach a `cancel` function to the promise returned by your query that implements your request cancellation. When a query becomes out-of-date or inactive, this `promise.cancel` function will be called (if available):
+But don't worry! If your queries are high-bandwidth or potentially very expensive to download, Vu Query exposes a generic way to **cancel** query requests using a cancellation token or other related API. To integrate with this feature, attach a `cancel` function to the promise returned by your query that implements your request cancellation. When a query becomes out-of-date or inactive, this `promise.cancel` function will be called (if available):
 
 ## Using `axios`
 
@@ -25,9 +25,9 @@ const query = useQuery('todos', () => {
     cancelToken: source.token,
   })
 
-  // Cancel the request if Vue Query calls the `promise.cancel` method
+  // Cancel the request if Vu Query calls the `promise.cancel` method
   promise.cancel = () => {
-    source.cancel('Query was cancelled by Vue Query')
+    source.cancel('Query was cancelled by Vu Query')
   }
 
   return promise
@@ -49,7 +49,7 @@ const query = useQuery('todos', () => {
     signal,
   })
 
-  // Cancel the request if Vue Query calls the `promise.cancel` method
+  // Cancel the request if Vu Query calls the `promise.cancel` method
   promise.cancel = () => controller.abort()
 
   return promise
@@ -58,7 +58,7 @@ const query = useQuery('todos', () => {
 
 ## Manual Cancellation
 
-You might want to cancel a query manually. For example, if the request takes a long time to finish, you can allow the user to click a cancel button to stop the request. To do this, you just need to call `cache.cancelQueries(key)`. If `promise.cancel` is available, Vue Query will cancel the request.
+You might want to cancel a query manually. For example, if the request takes a long time to finish, you can allow the user to click a cancel button to stop the request. To do this, you just need to call `cache.cancelQueries(key)`. If `promise.cancel` is available, Vu Query will cancel the request.
 
 ```js
 const [queryKey] = useState('todos')
@@ -72,7 +72,7 @@ const query = useQuery(queryKey, () => {
     signal,
   })
 
-  // Cancel the request if Vue Query calls the `promise.cancel` method
+  // Cancel the request if Vu Query calls the `promise.cancel` method
   promise.cancel = () => controller.abort()
 
   return promise

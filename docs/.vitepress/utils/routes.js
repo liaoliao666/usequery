@@ -349,16 +349,6 @@ const routesConfig = [
         editUrl: '/reference/QueriesObserver.md',
       },
       {
-        title: 'QueryErrorResetBoundary',
-        path: '/reference/QueryErrorResetBoundary',
-        editUrl: '/reference/QueryErrorResetBoundary.md',
-      },
-      {
-        title: 'useQueryErrorResetBoundary',
-        path: '/reference/useQueryErrorResetBoundary',
-        editUrl: '/reference/useQueryErrorResetBoundary.md',
-      },
-      {
         title: 'focusManager',
         path: '/reference/focusManager',
         editUrl: '/reference/focusManager.md',

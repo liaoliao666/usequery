@@ -1033,14 +1033,6 @@ util-deprecate@^1.0.2:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-v-use-query@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/v-use-query/-/v-use-query-0.0.10.tgz#b3b5b0ade4ef6fe699dc3bd5a92e3b116f119365"
-  integrity sha512-+vM9MmOHDu/UUVF1Ia+WsF/OTMBGHJEA2JHvXxcgtMMpr7x8MuUXSbbhiWJkID+aubN+ZEn8TO/dDsnXClrC2Q==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-    vue "^3.0.0"
-
 vite@^2.0.0-beta.12:
   version "2.0.0-beta.26"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.0-beta.26.tgz#70e2277003de609b218ddb33d740f76d01f01dc2"
@@ -1067,6 +1059,14 @@ vscode-web-custom-data@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/vscode-web-custom-data/-/vscode-web-custom-data-0.3.2.tgz#62a5a924397d8056c5524ff0ff8f14eb815b7066"
   integrity sha512-GGZ99dJbARyh6rv03dXZImGlP5WvNG382A3nIt0yX1uyqBa558L/klHWcgEJzcVkG4t16OQWwPedMR3JkeD2Qg==
+
+vu-query@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/vu-query/-/vu-query-0.0.0.tgz#0eec3952d91f82530cad12ef754ff2e748dfcda6"
+  integrity sha512-XqcDJyGKdVqEa4zS0PtRIr0qwzHExIfiUpohdr3/9MTF9bNSYbFWJ1AKqZuF4vmFiWbTcnhw0A7GYDIFII+KqA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    vue "^3.0.0"
 
 vue@^3.0.0, vue@^3.0.5:
   version "3.0.5"

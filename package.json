@@ -1,11 +1,11 @@
 {
-  "name": "v-use-query",
-  "version": "0.0.8",
+  "name": "vu-query",
+  "version": "0.0.0",
   "description": "🌈 Composables api for fetching, caching and updating asynchronous data in Vue 3",
   "author": "liaoliao666",
   "license": "MIT",
   "main": "lib/index.js",
-  "unpkg": "dist/v-use-query.development.js",
+  "unpkg": "dist/vu-query.development.js",
   "types": "types/index.d.ts",
   "module": "es/index.js",
   "sideEffects": [
@@ -24,8 +24,7 @@
     "test:types": "tsc",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "release": "yarn build && npm publish"
+    "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",

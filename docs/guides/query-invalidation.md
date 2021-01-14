@@ -12,7 +12,7 @@ queryClient.invalidateQueries()
 queryClient.invalidateQueries('todos')
 ```
 
-> Note: Where other libraries that use normalized caches would attempt to update local queries with the new data either imperatively or via schema inference, Vue Query gives you the tools to avoid the manual labor that comes with maintaining normalized caches and instead prescribes **targeted invalidation, background-refetching and ultimately atomic updates**.
+> Note: Where other libraries that use normalized caches would attempt to update local queries with the new data either imperatively or via schema inference, Vu Query gives you the tools to avoid the manual labor that comes with maintaining normalized caches and instead prescribes **targeted invalidation, background-refetching and ultimately atomic updates**.
 
 When a query is invalidated with `invalidateQueries`, two things happen:
 
@@ -26,7 +26,7 @@ When using APIs like `invalidateQueries` and `removeQueries` (and others that su
 In this example, we can use the `todos` prefix to invalidate any queries that start with `todos` in their query key:
 
 ```js
-import { useQuery, useQueryClient } from 'v-use-query'
+import { useQuery, useQueryClient } from 'vu-query'
 
 // Get QueryClient from the context
 const queryClient = useQueryClient()

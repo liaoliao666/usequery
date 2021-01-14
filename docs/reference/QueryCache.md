@@ -3,12 +3,12 @@ id: QueryCache
 title: QueryCache
 ---
 
-The `QueryCache` is the storage mechanism for Vue Query. It stores all of the data, meta information and state of queries it contains.
+The `QueryCache` is the storage mechanism for Vu Query. It stores all of the data, meta information and state of queries it contains.
 
 **Normally, you will not interact with the QueryCache directly and instead use the `QueryClient` for a specific cache.**
 
 ```js
-import { QueryCache } from 'v-use-query'
+import { QueryCache } from 'vu-query'
 
 const queryCache = new QueryCache()
 const query = queryCache.find('posts')

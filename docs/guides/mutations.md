@@ -3,7 +3,7 @@ id: mutations
 title: Mutations
 ---
 
-Unlike queries, mutations are typically used to create/update/delete data or perform server side-effects. For this purpose, Vue Query exports a `useMutation` hook.
+Unlike queries, mutations are typically used to create/update/delete data or perform server side-effects. For this purpose, Vu Query exports a `useMutation` hook.
 
 Here's an example of a mutation that adds a new todo the server:
 
@@ -53,7 +53,7 @@ In the example above, you also saw that you can pass variables to your mutations
 
 Even with just variables, mutations aren't all that special, but when used with the `onSuccess` option, the [Query Client's `invalidateQueries` method](../reference/QueryClient#queryclientinvalidatequeries) and the [Query Client's `setQueryData` method](../reference/QueryClient#queryclientsetquerydata), mutations become a very powerful tool.
 
-> IMPORTANT: The `mutate` function is an asynchronous function, which means you cannot use it directly in an event callback. If you need to access the event in `onSubmit` you need to wrap `mutate` in another function. This is due to [Vue event pooling](https://reactjs.org/docs/events.html#event-pooling).
+> IMPORTANT: The `mutate` function is an asynchronous function, which means you cannot use it directly in an event callback. If you need to access the event in `onSubmit` you need to wrap `mutate` in another function. This is due to [React event pooling](https://reactjs.org/docs/events.html#event-pooling).
 
 ```js
 // This will not work
@@ -196,7 +196,7 @@ try {
 
 ## Retry
 
-By default Vue Query will not retry a mutation on error, but it is possible with the `retry` option:
+By default Vu Query will not retry a mutation on error, but it is possible with the `retry` option:
 
 ```js
 const mutation = useMutation(addTodo, {

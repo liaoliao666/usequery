@@ -3,17 +3,17 @@ id: testing
 title: Testing
 ---
 
-Vue Query works by means of hooks - either the ones we offer or custom ones that wrap around them.
+Vu Query works by means of hooks - either the ones we offer or custom ones that wrap around them.
 
-Writing unit tests for these custom hooks can be done by means of the [Vue Hooks Testing Library](https://vue-hooks-testing-library.com/) library.
+Writing unit tests for these custom hooks can be done by means of the [React Hooks Testing Library](https://react-hooks-testing-library.com/) library.
 
 Install this by running:
 
 ```sh
-npm install @testing-library/vue-hooks vue-test-renderer --save-dev
+npm install @testing-library/react-hooks react-test-renderer --save-dev
 ```
 
-(The `vue-test-renderer` library is needed as a peer dependency of `@testing-library/vue-hooks`, and needs to correspond to the version of Vue that you are using.)
+(The `react-test-renderer` library is needed as a peer dependency of `@testing-library/react-hooks`, and needs to correspond to the version of React that you are using.)
 
 ## Our First Test
 
@@ -47,7 +47,7 @@ It is possible to write this wrapper only once, but if so we need to ensure that
 
 ## Testing Network Calls
 
-The primary use for Vue Query is to cache network requests, so it's important that we can test our code is making the correct network requests in the first place.
+The primary use for Vu Query is to cache network requests, so it's important that we can test our code is making the correct network requests in the first place.
 
 There are plenty of ways that these can be tested, but for this example we are going to use [nock](https://www.npmjs.com/package/nock).
 

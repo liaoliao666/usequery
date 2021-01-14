@@ -3,7 +3,7 @@ id: paginated-queries
 title: Paginated / Lagged Queries
 ---
 
-Rendering paginated data is a very common UI pattern and in Vue Query, it "just works" by including the page information in the query key:
+Rendering paginated data is a very common UI pattern and in Vu Query, it "just works" by including the page information in the query key:
 
 ```js
 const result = useQuery(['projects', page], fetchProjects)
@@ -13,7 +13,7 @@ However, if you run this simple example, you might notice something strange:
 
 **The UI jumps in and out of the `success` and `loading` states because each new page is treated like a brand new query.**
 
-This experience is not optimal and unfortunately is how many tools today insist on working. But not Vue Query! As you may have guessed, Vue Query comes with an awesome featured called `keepPreviousData` that allows us to get around this.
+This experience is not optimal and unfortunately is how many tools today insist on working. But not Vu Query! As you may have guessed, Vu Query comes with an awesome featured called `keepPreviousData` that allows us to get around this.
 
 ## Better Paginated Queries with `keepPreviousData`
 
@@ -25,7 +25,7 @@ Consider the following example where we would ideally want to increment a pageIn
 
 ```js
 function Todos() {
-  const [page, setPage] = Vue.useState(0)
+  const [page, setPage] = React.useState(0)
 
   const fetchProjects = (page = 0) => fetch('/api/projects?page=' + page)
 

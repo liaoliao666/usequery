@@ -3,7 +3,7 @@ id: window-focus-refetching
 title: Window Focus Refetching
 ---
 
-If a user leaves your application and returns to stale data, **Vue Query automatically requests fresh data for you in the background**. You can disable this globally or per-query using the `refetchOnWindowFocus` option:
+If a user leaves your application and returns to stale data, **Vu Query automatically requests fresh data for you in the background**. You can disable this globally or per-query using the `refetchOnWindowFocus` option:
 
 #### Disabling Globally
 
@@ -30,7 +30,7 @@ useQuery('todos', fetchTodos, { refetchOnWindowFocus: false })
 
 ## Custom Window Focus Event
 
-In rare circumstances, you may want to manage your own window focus events that trigger Vue Query to revalidate. To do this, Vue Query provides a `focusManager.setEventListener` function that supplies you the callback that should be fired when the window is focused and allows you to set up your own events. When calling `focusManager.setEventListener`, the previously set handler is removed (which in most cases will be the default handler) and your new handler is used instead. For example, this is the default handler:
+In rare circumstances, you may want to manage your own window focus events that trigger Vu Query to revalidate. To do this, Vu Query provides a `focusManager.setEventListener` function that supplies you the callback that should be fired when the window is focused and allows you to set up your own events. When calling `focusManager.setEventListener`, the previously set handler is removed (which in most cases will be the default handler) and your new handler is used instead. For example, this is the default handler:
 
 ```js
 focusManager.setEventListener(handleFocus => {
@@ -53,19 +53,19 @@ focusManager.setEventListener(handleFocus => {
 A great use-case for replacing the focus handler is that of iframe events. Iframes present problems with detecting window focus by both double-firing events and also firing false-positive events when focusing or using iframes within your app. If you experience this, you should use an event handler that ignores these events as much as possible. I recommend [this one](https://gist.github.com/tannerlinsley/1d3a2122332107fcd8c9cc379be10d88)! It can be set up in the following way:
 
 ```js
-import { focusManager } from 'v-use-query'
+import { focusManager } from 'vu-query'
 import onWindowFocus from './onWindowFocus' // The gist above
 
 focusManager.setEventListener(onWindowFocus) // Boom!
 ```
 
-## Managing Focus in Vue Native
+## Managing Focus in React Native
 
-Instead of event listeners on `window`, Vue Native provides focus information through the [`AppState` module](https://reactnative.dev/docs/appstate#app-states). You can use the `AppState` "change" event to trigger an update when the app state changes to "active":
+Instead of event listeners on `window`, React Native provides focus information through the [`AppState` module](https://reactnative.dev/docs/appstate#app-states). You can use the `AppState` "change" event to trigger an update when the app state changes to "active":
 
 ```js
-import { AppState } from 'vue-native'
-import { focusManager } from 'v-use-query'
+import { AppState } from 'react-native'
+import { focusManager } from 'vu-query'
 
 focusManager.setEventListener(setFocus => {
   const handleAppStateChange = appState => {
@@ -83,7 +83,7 @@ focusManager.setEventListener(setFocus => {
 ## Managing focus state
 
 ```js
-import { focusManager } from 'v-use-query'
+import { focusManager } from 'vu-query'
 
 // Override the default focus state
 focusManager.setFocused(true)

@@ -2,13 +2,13 @@ const pkg = require('../../package.json')
 const getSidebar = require('./utils/routes')
 
 module.exports = {
-  base: '/v-use-query/',
+  base: '/vu-query/',
   lang: 'en-US',
   title: pkg.name,
   description: pkg.description,
 
   themeConfig: {
-    repo: 'liaoliao666/v-use-query',
+    repo: 'liaoliao666/vu-query',
     docsDir: 'docs',
 
     editLinks: true,

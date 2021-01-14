@@ -8,7 +8,7 @@ title: QueryClient
 The `QueryClient` can be used to interact with a cache:
 
 ```js
-import { QueryClient } from 'v-use-query'
+import { QueryClient } from 'vu-query'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,7 +88,7 @@ try {
 
 **Options**
 
-The options for `fetchQuery` are exactly the same as those of [`useQuery`](#v-use-query).
+The options for `fetchQuery` are exactly the same as those of [`useQuery`](#usequery).
 
 **Returns**
 
@@ -131,7 +131,7 @@ await queryClient.prefetchQuery(queryKey)
 
 **Options**
 
-The options for `prefetchQuery` are exactly the same as those of [`useQuery`](#v-use-query).
+The options for `prefetchQuery` are exactly the same as those of [`useQuery`](#usequery).
 
 **Returns**
 
@@ -352,7 +352,7 @@ if (queryClient.isFetching()) {
 }
 ```
 
-Vue Query also exports a handy [`useIsFetching`](#useisfetching) hook that will let you subscribe to this state in your components without creating a manual subscription to the query cache.
+Vu Query also exports a handy [`useIsFetching`](#useisfetching) hook that will let you subscribe to this state in your components without creating a manual subscription to the query cache.
 
 **Options**
 

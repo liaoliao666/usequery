@@ -18,7 +18,7 @@ useQuery(['todos', todoId], async () => {
 
 ## Handling and Throwing Errors
 
-For Vue Query to determine a query has errored, the query function **must throw**. Any error that is thrown in the query function will be persisted on the `error` state of the query.
+For Vu Query to determine a query has errored, the query function **must throw**. Any error that is thrown in the query function will be persisted on the `error` state of the query.
 
 ```js
 const { error } = useQuery(['todos', todoId], async () => {
@@ -62,10 +62,10 @@ function fetchTodoList({ queryKey }) {
 
 ## Using a Query Object instead of parameters
 
-Anywhere the `[queryKey, queryFn, config]` signature is supported throughout Vue Query's API, you can also use an object to express the same configuration:
+Anywhere the `[queryKey, queryFn, config]` signature is supported throughout Vu Query's API, you can also use an object to express the same configuration:
 
 ```js
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 useQuery({
   queryKey: ['todo', 7],

@@ -1,9 +1,9 @@
 ---
-id: migrating-to-v-use-query-3
-title: Migrating to Vue Query 3
+id: migrating-to-vu-query-3
+title: Migrating to Vu Query 3
 ---
 
-Previous versions of Vue Query were awesome and brought some amazing new features, more magic, and an overall better experience to the library. They also brought on massive adoption and likewise a lot of refining fire (issues/contributions) to the library and brought to light a few things that needed more polish to make the library even better. v3 contains that very polish.
+Previous versions of Vu Query were awesome and brought some amazing new features, more magic, and an overall better experience to the library. They also brought on massive adoption and likewise a lot of refining fire (issues/contributions) to the library and brought to light a few things that needed more polish to make the library even better. v3 contains that very polish.
 
 ## Overview
 
@@ -17,10 +17,10 @@ Previous versions of Vue Query were awesome and brought some amazing new feature
 - New `useQueries` hook! (Variable-length parallel query execution)
 - Query filter support for the `useIsFetching()` hook!
 - Retry/offline/replay support for mutations
-- Observe queries/mutations outside of Vue
-- Use the Vue Query core logic anywhere you want!
-- Bundled/Colocated Devtools via `v-use-query/devtools`
-- Cache Persistence to localstorage (experimental via `v-use-query/persist-localstorage-experimental`)
+- Observe queries/mutations outside of React
+- Use the Vu Query core logic anywhere you want!
+- Bundled/Colocated Devtools via `vu-query/devtools`
+- Cache Persistence to localstorage (experimental via `vu-query/persist-localstorage-experimental`)
 
 ## Breaking Changes
 
@@ -39,7 +39,7 @@ This has some benefits:
 When creating a `new QueryClient()`, a `QueryCache` and `MutationCache` are automatically created for you if you don't supply them.
 
 ```js
-import { QueryClient } from 'v-use-query'
+import { QueryClient } from 'vu-query'
 
 const queryClient = new QueryClient()
 ```
@@ -64,7 +64,7 @@ const queryClient = new QueryClient({
 The `QueryClientProvider` component is now used to connect a `QueryClient` to your application:
 
 ```js
-import { QueryClient, QueryClientProvider } from 'v-use-query'
+import { QueryClient, QueryClientProvider } from 'vu-query'
 
 const queryClient = new QueryClient()
 
@@ -155,7 +155,7 @@ useInfiniteQuery(['posts'], ({ pageParam = 0 }) => fetchPost(pageParam))
 The new `keepPreviousData` options is available for both `useQuery` and `useInfiniteQuery` and will have the same "lagging" effect on your data:
 
 ```js
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 function Page({ page }) {
   const { data } = useQuery(['page', page], fetchPage, {
@@ -353,7 +353,7 @@ With these new options it is possible to configure when a component should re-re
 Only re-render when the `data` or `error` properties change:
 
 ```js
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 function User() {
   const { data } = useQuery('user', fetchUser, {
@@ -366,7 +366,7 @@ function User() {
 Prevent re-render when the `isStale` property changes:
 
 ```js
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 function User() {
   const { data } = useQuery('user', fetchUser, {
@@ -387,7 +387,7 @@ Because data and errors can be present at the same time, the `updatedAt` propert
 ### `setConsole()` has been replaced by the new `setLogger()` function
 
 ```js
-import { setLogger } from 'v-use-query'
+import { setLogger } from 'vu-query'
 
 // Log with Sentry
 setLogger({
@@ -400,12 +400,12 @@ setLogger({
 setLogger(winston.createLogger())
 ```
 
-### Vue Native no longer requires overriding the logger
+### React Native no longer requires overriding the logger
 
-To prevent showing error screens in Vue Native when a query fails it was necessary to manually change the Console:
+To prevent showing error screens in React Native when a query fails it was necessary to manually change the Console:
 
 ```js
-import { setConsole } from 'v-use-query'
+import { setConsole } from 'vu-query'
 
 setConsole({
   log: console.log,
@@ -414,7 +414,7 @@ setConsole({
 })
 ```
 
-In version 3 **this is done automatically when Vue Query is used in Vue Native**.
+In version 3 **this is done automatically when Vu Query is used in React Native**.
 
 ## New features
 
@@ -423,7 +423,7 @@ In version 3 **this is done automatically when Vue Query is used in Vue Native**
 The `useQuery` and `useInfiniteQuery` hooks now have a `select` option to select or transform parts of the query result.
 
 ```js
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 function User() {
   const { data } = useQuery('user', fetchUser, {
@@ -440,7 +440,7 @@ Set the `notifyOnChangeProps` option to `['data', 'error']` to only re-render wh
 Wish you could run `useQuery` in a loop? The rules of hooks say no, but with the new `useQueries()` hook, you can!
 
 ```js
-import { useQueries } from 'v-use-query'
+import { useQueries } from 'vu-query'
 
 function Overview() {
   const results = useQueries([
@@ -457,7 +457,7 @@ function Overview() {
 
 #### Retry/offline mutations
 
-By default Vue Query will not retry a mutation on error, but it is possible with the `retry` option:
+By default Vu Query will not retry a mutation on error, but it is possible with the `retry` option:
 
 ```js
 const mutation = useMutation(addTodo, {
@@ -552,12 +552,12 @@ const fetches = useIsFetching(['posts'])
 
 #### Core separation
 
-The core of Vue Query is now fully separated from Vue, which means it can also be used standalone or in other frameworks. Use the `v-use-query/core` entrypoint to only import the core functionality:
+The core of Vu Query is now fully separated from React, which means it can also be used standalone or in other frameworks. Use the `vu-query/core` entrypoint to only import the core functionality:
 
 ```js
-import { QueryClient } from 'v-use-query/core'
+import { QueryClient } from 'vu-query/core'
 ```
 
 ### Devtools are now part of the main repo and npm package
 
-The devtools are now included in the `v-use-query` package itself under the import `v-use-query/devtools`. Simply replace `v-use-query-devtools` imports with `v-use-query/devtools`
+The devtools are now included in the `vu-query` package itself under the import `vu-query/devtools`. Simply replace `vu-query-devtools` imports with `vu-query/devtools`

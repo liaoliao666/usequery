@@ -3,7 +3,7 @@ id: query-retries
 title: Query Retries
 ---
 
-When a `useQuery` query fails (the query function throws an error), Vue Query will automatically retry the query if that query's request has not reached the max number of consecutive retries (defaults to `3`) or a function is provided to determine if a retry is allowed.
+When a `useQuery` query fails (the query function throws an error), Vu Query will automatically retry the query if that query's request has not reached the max number of consecutive retries (defaults to `3`) or a function is provided to determine if a retry is allowed.
 
 You can configure retries both on a global level and an individual query level.
 
@@ -13,7 +13,7 @@ You can configure retries both on a global level and an individual query level.
 - Setting `retry = (failureCount, error) => ...` allows for custom logic based on why the request failed.
 
 ```js
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 // Make a specific query retry a certain number of times
 const result = useQuery(['todos', 1], fetchTodoListPage, {
@@ -23,13 +23,13 @@ const result = useQuery(['todos', 1], fetchTodoListPage, {
 
 ## Retry Delay
 
-By default, retries in Vue Query do not happen immediately after a request fails. As is standard, a back-off delay is gradually applied to each retry attempt.
+By default, retries in Vu Query do not happen immediately after a request fails. As is standard, a back-off delay is gradually applied to each retry attempt.
 
 The default `retryDelay` is set to double (starting at `1000`ms) with each attempt, but not exceed 30 seconds:
 
 ```js
 // Configure for all queries
-import { QueryCache, QueryClient, QueryClientProvider } from 'v-use-query'
+import { QueryCache, QueryClient, QueryClientProvider } from 'vu-query'
 
 const queryClient = new QueryClient({
   defaultOptions: {

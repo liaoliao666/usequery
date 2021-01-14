@@ -3,7 +3,7 @@ id: query-filters
 title: Query Filters
 ---
 
-Some methods within Vue Query accept a `QueryFilters` object. A query filter is an object with certain conditions to match a query with:
+Some methods within Vu Query accept a `QueryFilters` object. A query filter is an object with certain conditions to match a query with:
 
 ```js
 // Cancel all queries

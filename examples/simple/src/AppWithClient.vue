@@ -1,5 +1,5 @@
 <script setup>
-import { QueryClientProvider, QueryClient } from 'v-use-query'
+import { QueryClientProvider, QueryClient } from 'vu-query'
 
 import App from './App.vue'
 

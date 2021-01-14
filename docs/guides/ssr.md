@@ -3,7 +3,7 @@ id: ssr
 title: SSR
 ---
 
-Vue Query supports two ways of prefetching data on the server and passing that to the queryClient.
+Vu Query supports two ways of prefetching data on the server and passing that to the queryClient.
 
 - Prefetch the data yourself and pass it in as `initialData`
   - Quick to set up for simple cases
@@ -18,11 +18,11 @@ The exact implementation of these mechanisms may vary from platform to platform,
 - Static Generation (SSG)
 - Server-side Rendering (SSR)
 
-Vue Query supports both of these forms of pre-rendering regardless of what platform you may be using
+Vu Query supports both of these forms of pre-rendering regardless of what platform you may be using
 
 ### Using `initialData`
 
-Together with Next.js's [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) or [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering), you can pass the data you fetch in either method to `useQuery`'s' `initialData` option. From Vue Query's perspective, these integrate in the same way, `getStaticProps` is shown below:
+Together with Next.js's [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) or [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering), you can pass the data you fetch in either method to `useQuery`'s' `initialData` option. From Vu Query's perspective, these integrate in the same way, `getStaticProps` is shown below:
 
 ```js
 export async function getStaticProps() {
@@ -45,7 +45,7 @@ The setup is minimal and this can be a quick solution for some cases, but there 
 
 ### Using Hydration
 
-Vue Query supports prefetching multiple queries on the server in Next.js and then _dehydrating_ those queries to the queryClient. This means the server can prerender markup that is immediately available on page load and as soon as JS is available, Vue Query can upgrade or _hydrate_ those queries with the full functionality of the library. This includes refetching those queries on the client if they have become stale since the time they were rendered on the server.
+Vu Query supports prefetching multiple queries on the server in Next.js and then _dehydrating_ those queries to the queryClient. This means the server can prerender markup that is immediately available on page load and as soon as JS is available, Vu Query can upgrade or _hydrate_ those queries with the full functionality of the library. This includes refetching those queries on the client if they have become stale since the time they were rendered on the server.
 
 To support caching queries on the server and set up hydration:
 
@@ -55,8 +55,8 @@ To support caching queries on the server and set up hydration:
 
 ```js
 // _app.jsx
-import { QueryClient, QueryClientProvider } from 'v-use-query'
-import { Hydrate } from 'v-use-query/hydration'
+import { QueryClient, QueryClientProvider } from 'vu-query'
+import { Hydrate } from 'vu-query/hydration'
 
 const queryClient = new QueryClient()
 
@@ -71,7 +71,7 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-Now you are ready to prefetch some data in your pages with either [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) (for SSG) or [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (for SSR). From Vue Query's perspective, these integrate in the same way, `getStaticProps` is shown below.
+Now you are ready to prefetch some data in your pages with either [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) (for SSG) or [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) (for SSR). From Vu Query's perspective, these integrate in the same way, `getStaticProps` is shown below.
 
 - Create a new `QueryClient` instance for each page request
 - Prefetch the data using the clients `prefetchQuery` method and wait for it to complete
@@ -79,8 +79,8 @@ Now you are ready to prefetch some data in your pages with either [`getStaticPro
 
 ```js
 // pages/posts.jsx
-import { QueryClient, useQuery } from 'v-use-query'
-import { dehydrate } from 'v-use-query/hydration'
+import { QueryClient, useQuery } from 'vu-query'
+import { dehydrate } from 'vu-query/hydration'
 
 export async function getStaticProps() {
   const queryClient = new QueryClient()
@@ -111,7 +111,7 @@ As demonstrated, it's fine to prefetch some queries and let others fetch on the 
 
 ## Using Other Frameworks or Custom SSR Frameworks
 
-This guide is at-best, a high level overview of how SSR with Vue Query should work. Your mileage may vary since there are many different possible setups for SSR.
+This guide is at-best, a high level overview of how SSR with Vu Query should work. Your mileage may vary since there are many different possible setups for SSR.
 
 > If you can, please contribution your findings back to this page for any framework specific guidance!
 
@@ -123,11 +123,11 @@ This guide is at-best, a high level overview of how SSR with Vue Query should wo
 - Render your app with the client provider and also **using the dehydrated state. This is extremely important! You must render both server and client using the same dehydrated state to ensure hydration on the client produces the exact same markup as the server.**
 - Serialize and embed the dehydrated cache to be sent to the client with the HTML
 
-> SECURITY NOTE: Serializing data with `JSON.stringify` can put you at risk for XSS-vulnerabilities, [this blog post explains why and how to solve it](https://medium.com/node-security/the-most-common-xss-vulnerability-in-vue-js-applications-2bdffbcc1fa0)
+> SECURITY NOTE: Serializing data with `JSON.stringify` can put you at risk for XSS-vulnerabilities, [this blog post explains why and how to solve it](https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0)
 
 ```js
-import { QueryClient, QueryClientProvider } from 'v-use-query'
-import { dehydrate, Hydrate } from 'v-use-query/hydration'
+import { QueryClient, QueryClientProvider } from 'vu-query'
+import { dehydrate, Hydrate } from 'vu-query/hydration'
 
 const queryClient = new QueryClient()
 await queryClient.prefetchQuery('key', fn)
@@ -160,8 +160,8 @@ res.send(`
 - Render your app with the client provider and also **using the dehydrated state. This is extremely important! You must render both server and client using the same dehydrated state to ensure hydration on the client produces the exact same markup as the server.**
 
 ```js
-import { QueryClient, QueryClientProvider } from 'v-use-query'
-import { Hydrate } from 'v-use-query/hydration'
+import { QueryClient, QueryClientProvider } from 'vu-query'
+import { Hydrate } from 'vu-query/hydration'
 
 const dehydratedState = window.__REACT_QUERY_STATE__
 

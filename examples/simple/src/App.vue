@@ -1,9 +1,9 @@
 <script setup>
 import { toRefs } from 'vue'
-import { useQuery } from 'v-use-query'
+import { useQuery } from 'vu-query'
 
 const result = useQuery('repoData', () =>
-  fetch('https://api.github.com/repos/liaoliao666/v-use-query').then(res =>
+  fetch('https://api.github.com/repos/liaoliao666/vu-query').then(res =>
     res.json()
   )
 )

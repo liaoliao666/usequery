@@ -3,7 +3,7 @@ id: FocusManager
 title: FocusManager
 ---
 
-The `FocusManager` manages the focus state within Vue Query.
+The `FocusManager` manages the focus state within Vu Query.
 
 It can be used to change the default event listeners or to manually change the focus state.
 
@@ -18,7 +18,7 @@ Its available methods are:
 `setEventListener` can be used to set a custom event listener:
 
 ```js
-import { focusManager } from 'v-use-query'
+import { focusManager } from 'vu-query'
 
 focusManager.setEventListener(handleFocus => {
   // Listen to visibillitychange and focus
@@ -40,7 +40,7 @@ focusManager.setEventListener(handleFocus => {
 `setFocsued` can be used to manually set the focus state. Set `undefined` to fallback to the default focus check.
 
 ```js
-import { focusManager } from 'v-use-query'
+import { focusManager } from 'vu-query'
 
 // Set focused
 focusManager.setFocused(true)

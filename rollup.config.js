@@ -23,7 +23,7 @@ export default [
   {
     input: inputSrc,
     output: {
-      file: 'dist/v-use-query.mjs',
+      file: 'dist/vu-query.mjs',
       format: 'es',
       sourcemap: true,
     },
@@ -38,7 +38,7 @@ export default [
   {
     input: inputSrc,
     output: {
-      file: 'dist/v-use-query.min.mjs',
+      file: 'dist/vu-query.min.mjs',
       format: 'es',
       sourcemap: true,
     },
@@ -55,7 +55,7 @@ export default [
     input: inputSrc,
     output: {
       name: 'VueQuery',
-      file: 'dist/v-use-query.development.js',
+      file: 'dist/vu-query.development.js',
       format: 'umd',
       sourcemap: true,
       globals,
@@ -72,7 +72,7 @@ export default [
     input: inputSrc,
     output: {
       name: 'VueQuery',
-      file: 'dist/v-use-query.production.min.js',
+      file: 'dist/vu-query.production.min.js',
       format: 'umd',
       sourcemap: true,
       globals,

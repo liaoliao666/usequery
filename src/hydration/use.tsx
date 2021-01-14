@@ -1,4 +1,4 @@
-import { defineComponent, toRaw, watchEffect } from 'vue'
+import { defineComponent, PropType, toRaw, watchEffect } from 'vue'
 
 import { useQueryClient } from '../use'
 import { hydrate, HydrateOptions } from './hydration'
@@ -22,12 +22,16 @@ export interface HydrateProps {
   options?: HydrateOptions
 }
 
-export const Hydrate = defineComponent<HydrateProps>({
+export const Hydrate = defineComponent({
   name: 'Hydrate',
+  props: {
+    state: Object as PropType<unknown>,
+    options: Object as PropType<HydrateOptions>,
+  },
   setup(props, { slots }) {
     const { state, options } = props
     useHydrate(state, options)
 
-    return slots.default?.()
+    return () => slots.default?.()
   },
 })

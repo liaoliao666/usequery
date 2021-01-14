@@ -3,7 +3,7 @@ id: infinite-queries
 title: Infinite Queries
 ---
 
-Rendering lists that can additively "load more" data onto an existing set of data or "infinite scroll" is also a very common UI pattern. Vue Query supports a useful version of `useQuery` called `useInfiniteQuery` for querying these types of lists.
+Rendering lists that can additively "load more" data onto an existing set of data or "infinite scroll" is also a very common UI pattern. Vu Query supports a useful version of `useQuery` called `useInfiniteQuery` for querying these types of lists.
 
 When using `useInfiniteQuery`, you'll notice a few things are different:
 
@@ -40,7 +40,7 @@ With this information, we can create a "Load More" UI by:
 > Note: It's very important you do not call `fetchNextPage` with arguments unless you want them to override the `pageParam` data returned from the `getNextPageParam` function. eg. Do not do this: `<button onClick={fetchNextPage} />` as this would send the onClick event to the `fetchNextPage` function.
 
 ```js
-import { useInfiniteQuery } from 'v-use-query'
+import { useInfiniteQuery } from 'vu-query'
 
 function Projects() {
   const fetchProjects = ({ pageParam = 0 }) =>
@@ -65,11 +65,11 @@ function Projects() {
   ) : (
     <>
       {data.pages.map((group, i) => (
-        <Vue.Fragment key={i}>
+        <React.Fragment key={i}>
           {group.projects.map(project => (
             <p key={project.id}>{project.name}</p>
           ))}
-        </Vue.Fragment>
+        </React.Fragment>
       ))}
       <div>
         <button

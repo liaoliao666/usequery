@@ -6,7 +6,7 @@ title: QueryClientProvider
 Use the `QueryClientProvider` component to connect and provide a `QueryClient` to your application:
 
 ```js
-import { QueryClient, QueryClientProvider } from 'v-use-query'
+import { QueryClient, QueryClientProvider } from 'vu-query'
 
 const queryClient = new QueryClient()
 

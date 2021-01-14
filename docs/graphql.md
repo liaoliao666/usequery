@@ -3,9 +3,9 @@ id: graphql
 title: GraphQL
 ---
 
-Because Vue Query's fetching mechanisms are agnostically built on Promises, you can use Vue Query with literally any asynchronous data fetching client, including GraphQL!
+Because Vu Query's fetching mechanisms are agnostically built on Promises, you can use Vu Query with literally any asynchronous data fetching client, including GraphQL!
 
-> Keep in mind that Vue Query does not support normalized caching. While a vast majority of users do not actually need a normalized cache or even benefit from it as much as they believe they do, there may be very rare circumstances that may warrant it so be sure to check with us first to make sure it's truly something you need!
+> Keep in mind that Vu Query does not support normalized caching. While a vast majority of users do not actually need a normalized cache or even benefit from it as much as they believe they do, there may be very rare circumstances that may warrant it so be sure to check with us first to make sure it's truly something you need!
 
 ## Examples
 
