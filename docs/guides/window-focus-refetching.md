@@ -17,9 +17,16 @@ const queryClient = new QueryClient({
   },
 })
 
-function App() {
-  return <QueryClientProvider client={queryClient}>...</QueryClientProvider>
-}
+const App = defineComponent({
+  render() {
+    return (
+      // Provide the client to your App
+      <QueryClientProvider client={queryClient}>
+        ...
+      </QueryClientProvider>
+    )
+  },
+})
 ```
 
 #### Disabling Per-Query
@@ -57,27 +64,6 @@ import { focusManager } from 'vu-query'
 import onWindowFocus from './onWindowFocus' // The gist above
 
 focusManager.setEventListener(onWindowFocus) // Boom!
-```
-
-## Managing Focus in React Native
-
-Instead of event listeners on `window`, React Native provides focus information through the [`AppState` module](https://reactnative.dev/docs/appstate#app-states). You can use the `AppState` "change" event to trigger an update when the app state changes to "active":
-
-```js
-import { AppState } from 'react-native'
-import { focusManager } from 'vu-query'
-
-focusManager.setEventListener(setFocus => {
-  const handleAppStateChange = appState => {
-    setFocus(appState === 'active')
-  }
-
-  AppState.addEventListener('change', handleAppStateChange)
-
-  return () => {
-    AppState.removeEventListener('change', handleAppStateChange)
-  }
-})
 ```
 
 ## Managing focus state

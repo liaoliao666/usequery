@@ -7,18 +7,18 @@ Dependent (or serial) queries depend on previous ones to finish before they can 
 
 ```js
 // Get the user
-const { data: user } = useQuery(['user', email], getUserByEmail)
+const qeury = useQuery(['user', email], getUserByEmail)
 
-const userId = user?.id
+const userId = computed(() => query?.data?.id)
 
 // Then get the user's projects
 const { isIdle, data: projects } = useQuery(
-  ['projects', userId],
+  ['projects', reactive({ userId })],
   getProjectsByUser,
-  {
+  reactive({
     // The query will not execute until the userId exists
-    enabled: !!userId,
-  }
+    enabled: computed(() => !!userId.value),
+  })
 )
 
 // isIdle will be `true` until `enabled` is true and the query begins to fetch.

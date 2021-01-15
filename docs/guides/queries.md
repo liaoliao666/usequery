@@ -17,9 +17,11 @@ To subscribe to a query in your components or custom hooks, call the `useQuery` 
 ```js
 import { useQuery } from 'vu-query'
 
-function App() {
-  const info = useQuery('todos', fetchTodoList)
-}
+const App = defineComponent({
+  setup() {
+    const info = useQuery('todos', fetchTodoList)
+  },
+})
 ```
 
 The **unique key** you provide is used internally for refetching, caching, and sharing your queries throughout your application.
@@ -46,49 +48,51 @@ Beyond those primary state, more information is available depending on the state
 For **most** queries, it's usually sufficient to check for the `isLoading` state, then the `isError` state, then finally, assume that the data is available and render the successful state:
 
 ```js
-function Todos() {
-  const { isLoading, isError, data, error } = useQuery('todos', fetchTodoList)
+const Todos = defineComponent({
+  setup() {
+    const query = useQuery('todos', fetchTodoList)
+    
+    return () => {
+        if (query.isLoading) {
+          return <span>Loading...</span>
+        }
 
-  if (isLoading) {
-    return <span>Loading...</span>
-  }
+        if (query.isError) {
+          return <span>Error: {error.message}</span>
+        }
 
-  if (isError) {
-    return <span>Error: {error.message}</span>
-  }
-
-  // We can assume by this point that `isSuccess === true`
-  return (
-    <ul>
-      {data.map(todo => (
-        <li key={todo.id}>{todo.title}</li>
-      ))}
-    </ul>
-  )
-}
+        // We can assume by this point that `isSuccess === true`
+        return
+      }
+    }
+})
 ```
 
 If booleans aren't your thing, you can always use the `status` state as well:
 
 ```js
-function Todos() {
-  const { status, data, error } = useQuery('todos', fetchTodoList)
+const Todos = defineComponent({
+  setup() {
+    const query = useQuery('todos', fetchTodoList)
+    
+    return () => {
+        if (query.isLoading) {
+          return <span>Loading...</span>
+        }
 
-  if (status === 'loading') {
-    return <span>Loading...</span>
-  }
+        if (query.isError) {
+          return <span>Error: {error.message}</span>
+        }
 
-  if (status === 'error') {
-    return <span>Error: {error.message}</span>
-  }
-
-  // also status === 'success', but "else" logic works, too
-  return (
-    <ul>
-      {data.map(todo => (
-        <li key={todo.id}>{todo.title}</li>
-      ))}
-    </ul>
-  )
-}
+          // also status === 'success', but "else" logic works, too
+        return (
+          <ul>
+            {data.map(todo => (
+              <li key={todo.id}>{todo.title}</li>
+            ))}
+          </ul>
+        )
+      }
+    }
+})
 ```

@@ -66,7 +66,10 @@ useQuery(['todos', undefined, page, status], ...)
 Since query keys uniquely describe the data they are fetching, they should include any variables you use in your query function that **change**. For example:
 
 ```js
-function Todos({ completed }) {
-  const result = useQuery(['todos', todoId], () => fetchTodoById(todoId))
-}
+const Todos = defineComponent({
+  setup() {
+    const todoId = computed(() => props.todoId)
+    const result = useQuery(['todos', reactive({ todoId })], () => fetchTodoById(todoId.value))
+  },
+})
 ```

@@ -6,7 +6,7 @@ title: Does Vu Query replace Redux, MobX or other global state managers?
 Well, let's start with a few important items:
 
 - Vu Query is a **server-state** library, responsible for managing asynchronous operations between your server and client
-- Redux, MobX, Zustand, etc. are **client-state** libraries that _can be used to store asynchronous data, albeit inefficiently when compared to a tool like React Query_
+- Redux, MobX, Zustand, etc. are **client-state** libraries that _can be used to store asynchronous data, albeit inefficiently when compared to a tool like Vu Query_
 
 With those points in mind, the short answer is that Vu Query **replaces the boilerplate code and related wiring used to manage cache data in your client-state and replaces it with just a few lines of code.**
 

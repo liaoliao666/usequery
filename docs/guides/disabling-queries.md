@@ -17,40 +17,35 @@ When `enabled` is `false`:
 - `refetch` can be used to manually trigger the query to fetch.
 
 ```js
-function Todos() {
-  const {
-    isIdle,
-    isLoading,
-    isError,
-    data,
-    error,
-    refetch,
-    isFetching,
-  } = useQuery('todos', fetchTodoList, {
-    enabled: false,
-  })
+const Todos = defineComponent({
+  setup() {
+    const query = useQuery('todos', fetchTodoList, {
+      enabled: false,
+    })
+    
+    return () => {
+         return (
+          <>
+            <button onClick={() => query.refetch()}>Fetch Todos</button>
 
-  return (
-    <>
-      <button onClick={() => refetch()}>Fetch Todos</button>
-
-      {isIdle ? (
-        'Not ready...'
-      ) : isLoading ? (
-        <span>Loading...</span>
-      ) : isError ? (
-        <span>Error: {error.message}</span>
-      ) : (
-        <>
-          <ul>
-            {data.map(todo => (
-              <li key={todo.id}>{todo.title}</li>
-            ))}
-          </ul>
-          <div>{isFetching ? 'Fetching...' : null}</div>
-        </>
-      )}
-    </>
-  )
-}
+            {query.isIdle ? (
+              'Not ready...'
+            ) : query.isLoading ? (
+              <span>Loading...</span>
+            ) : query.isError ? (
+              <span>Error: {query.error.message}</span>
+            ) : (
+              <>
+                <ul>
+                  {query.data.map(todo => (
+                    <li key={todo.id}>{todo.title}</li>
+                  ))}
+                </ul>
+                <div>{query.isFetching ? 'Fetching...' : null}</div>
+              </>
+            )}
+          </>
+        )
+    }
+})
 ```

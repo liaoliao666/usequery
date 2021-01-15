@@ -45,24 +45,23 @@ In the example below, you can see Vu Query in its most basic and simple form bei
 [Open in CodeSandbox](https://codesandbox.io/s/github/liaoliao666/vu-query/tree/master/examples/simple)
 
 ```vue
-
-// AppWithClient
+// App
 <script setup>
 import { QueryClientProvider, QueryClient } from 'vu-query'
 
-import App from './App.vue'
+import Example from './Example.vue'
 
 const queryClient = new QueryClient()
 </script>
 
 <template>
   <QueryClientProvider :client="queryClient">
-    <App />
+    <Example />
   </QueryClientProvider>
 </template>
 
 
-// App
+// Example
 <script setup>
 import { toRefs } from 'vue'
 import { useQuery } from 'vu-query'

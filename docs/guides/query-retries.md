@@ -39,9 +39,15 @@ const queryClient = new QueryClient({
   },
 })
 
-function App() {
-  return <QueryClientProvider client={queryClient}>...</QueryClientProvider>
-}
+const App = defineComponent({
+  render() {
+    return (
+      <QueryClientProvider client={queryClient}>
+        ...
+      </QueryClientProvider>
+    )
+  },
+})
 ```
 
 Though it is not recommended, you can obviously override the `retryDelay` function/integer in both the Provider and individual query options. If set to an integer instead of a function the delay will always be the same amount of time:

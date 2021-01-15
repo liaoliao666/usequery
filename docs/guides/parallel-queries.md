@@ -30,7 +30,7 @@ If the number of queries you need to execute is changing from render to render, 
 ```js
 function App({ users }) {
   const userQueries = useQueries(
-    users.map(user => {
+    () => users.map(user => {
       return {
         queryKey: ['user', user.id],
         queryFn: () => fetchUserById(user.id),

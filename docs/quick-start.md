@@ -10,6 +10,7 @@ This example very briefly illustrates the 3 core concepts of Vu Query:
 - Query Invalidation
 
 ```js
+import { defineComponent, createApp } from 'vue'
 import {
   useQuery,
   useMutation,
@@ -19,19 +20,7 @@ import {
 } from 'vu-query'
 import { getTodos, postTodo } from '../my-api'
 
-// Create a client
-const queryClient = new QueryClient()
-
-function App() {
-  return (
-    // Provide the client to your App
-    <QueryClientProvider client={queryClient}>
-      <Todos />
-    </QueryClientProvider>
-  )
-}
-
-function Todos() {
+const Todos = defineComponent(() => {
   // Access the client
   const queryClient = useQueryClient()
 
@@ -46,10 +35,10 @@ function Todos() {
     },
   })
 
-  return (
+  return () => (
     <div>
       <ul>
-        {query.data.map(todo => (
+        {query.data?.map(todo => (
           <li key={todo.id}>{todo.title}</li>
         ))}
       </ul>
@@ -66,9 +55,23 @@ function Todos() {
       </button>
     </div>
   )
-}
+})
 
-render(<App />, document.getElementById('root'))
+// Create a client
+const queryClient = new QueryClient()
+
+const App = defineComponent({
+  render() {
+    return (
+      // Provide the client to your App
+      <QueryClientProvider client={queryClient}>
+        <Todos />
+      </QueryClientProvider>
+    )
+  },
+})
+
+createApp(App).mount('#app')
 ```
 
 These three concepts make up most of the core functionality of Vu Query. The next sections of the documentation will go over each of these core concepts in great detail.

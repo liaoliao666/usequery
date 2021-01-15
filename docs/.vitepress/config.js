@@ -2,7 +2,7 @@ const pkg = require('../../package.json')
 const getSidebar = require('./utils/routes')
 
 module.exports = {
-  base: '/vu-query/',
+  base: process.env.NODE_ENV === 'production' && '/vu-query/',
   lang: 'en-US',
   title: pkg.name,
   description: pkg.description,
