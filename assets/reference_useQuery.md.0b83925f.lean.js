@@ -1,1 +1,0 @@
-import{l as e,f as t,G as o}from"./framework.dc3bd9a4.js";const n='{"title":"useQuery","description":"","frontmatter":{"id":"useQuery","title":"useQuery"},"relativePath":"reference/useQuery.md","lastUpdated":1610694116664}',l={},i=o('',5);l.render=function(o,n,l,a,s,c){return e(),t("div",null,[i])};export default l;export{n as __pageData};

@@ -1,0 +1,1 @@
+import{l as n,f as s,G as a}from"./framework.dc3bd9a4.js";const e='{"title":"Dependent Queries","description":"","frontmatter":{"id":"dependent-queries","title":"Dependent Queries"},"relativePath":"guides/dependent-queries.md","lastUpdated":1610702694508}',t={},p=a('',2);t.render=function(a,e,t,o,c,u){return n(),s("div",null,[p])};export default t;export{e as __pageData};
