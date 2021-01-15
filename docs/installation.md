@@ -17,7 +17,7 @@ $ yarn add vu-query
 
 Vu Query is compatible with React v16.8+ and works with ReactDOM and React Native.
 
-> Wanna give it a spin before you download? Try out the [simple](/docs/examples/simple) or [basic](/docs/examples/basic) examples!
+> Wanna give it a spin before you download? Try out the [simple](/docs/examples/simple) or [custom-composable](/docs/examples/custom-composable) examples!
 
 ### CDN
 

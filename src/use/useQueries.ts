@@ -5,13 +5,17 @@ import { useQueryClient } from './QueryClientProvider'
 import { UseQueryOptions, UseQueryResult } from './types'
 import { replaceShallowEqualDeep } from '../core/utils'
 
-export function useQueries(queries: UseQueryOptions[]): UseQueryResult[] {
+export function useQueries(
+  queriesArg: UseQueryOptions[] | (() => UseQueryOptions[])
+): UseQueryResult[] {
   const queryClient = useQueryClient()
 
   // Create queries observer
   let observer!: QueriesObserver
 
   watchEffect(() => {
+    const queries = typeof queriesArg === 'function' ? queriesArg() : queriesArg
+
     if (observer) {
       // Update queries
       if (observer.hasListeners()) {

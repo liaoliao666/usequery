@@ -202,9 +202,9 @@ const routesConfig = [
         editUrl: '/examples/basic-graphql-request.mdx',
       },
       {
-        title: 'Custom Hooks',
-        path: '/examples/custom-hooks',
-        editUrl: '/examples/custom-hooks.mdx',
+        title: 'Custom Composables',
+        path: '/examples/custom-composable',
+        editUrl: '/examples/custom-composable.mdx',
       },
       {
         title: 'Auto Refetching / Polling / Realtime',

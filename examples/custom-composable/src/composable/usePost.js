@@ -10,5 +10,7 @@ const getPostById = async postId => {
 }
 
 export default function usePost(postId) {
-  return useQuery(reactive(['post', postId]), () => getPostById(unref(postId)))
+  return useQuery(reactive(['post', { postId }]), () =>
+    getPostById(unref(postId))
+  )
 }

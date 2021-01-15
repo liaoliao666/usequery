@@ -1,27 +1,28 @@
-<script setup>
-import { toRefs } from 'vue'
-import { useQuery } from 'vu-query'
-
-const result = useQuery('repoData', () =>
-  fetch('https://api.github.com/repos/liaoliao666/vu-query').then(res =>
-    res.json()
-  )
-)
-const { isLoading, error, data, isFetching } = toRefs(result)
-</script>
-
 <template>
-  <span v-if="isLoading">Loading...</span>
-  <span v-else-if="error">Loading...</span>
-  <div v-else>
-    <h1>{{ data.name }}</h1>
-    <p>{{ data.description }}</p>
-    <strong>👀 {{ data.subscribers_count }}</strong>
-    <strong>✨ {{ data.stargazers_count }}</strong>
-    <strong>🍴 {{ data.forks_count }}</strong>
-    <div>{{ isFetching ? 'Updating...' : '' }}</div>
-  </div>
+  <QueryClientProvider :client="queryClient">
+    <Example />
+  </QueryClientProvider>
 </template>
+
+<script>
+import { QueryClient, QueryClientProvider } from 'vu-query'
+import Example from './components/Example'
+
+const queryClient = new QueryClient()
+
+export default {
+  name: 'App',
+  components: {
+    QueryClientProvider,
+    Example,
+  },
+  setup() {
+    return {
+      queryClient,
+    }
+  },
+}
+</script>
 
 <style>
 #app {
