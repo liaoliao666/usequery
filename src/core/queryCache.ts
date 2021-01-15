@@ -5,7 +5,7 @@ import {
   parseFilterArgs,
 } from './utils'
 import { Query, QueryState } from './query'
-import type { QueryKeyWithRef, QueryOptions } from './types'
+import type { QueryKey, QueryOptions } from './types'
 import type { QueryClient } from './queryClient'
 import { Subscribable } from './subscribable'
 
@@ -96,17 +96,17 @@ export class QueryCache extends Subscribable<QueryCacheListener> {
   }
 
   find<TQueryFnData = unknown, TError = unknown, TData = TQueryFnData>(
-    arg1: QueryKeyWithRef,
+    arg1: QueryKey,
     arg2?: QueryFilters
   ): Query<TQueryFnData, TError, TData> | undefined {
     const [filters] = parseFilterArgs(arg1, arg2)
     return this.queries.find(query => matchQuery(filters, query))
   }
 
-  findAll(queryKey?: QueryKeyWithRef, filters?: QueryFilters): Query[]
+  findAll(queryKey?: QueryKey, filters?: QueryFilters): Query[]
   findAll(filters?: QueryFilters): Query[]
-  findAll(arg1?: QueryKeyWithRef | QueryFilters, arg2?: QueryFilters): Query[]
-  findAll(arg1?: QueryKeyWithRef | QueryFilters, arg2?: QueryFilters): Query[] {
+  findAll(arg1?: QueryKey | QueryFilters, arg2?: QueryFilters): Query[]
+  findAll(arg1?: QueryKey | QueryFilters, arg2?: QueryFilters): Query[] {
     const [filters] = parseFilterArgs(arg1, arg2)
     return filters
       ? this.queries.filter(query => matchQuery(filters, query))

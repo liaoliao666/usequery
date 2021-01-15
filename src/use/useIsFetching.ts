@@ -1,16 +1,16 @@
 import { onMounted, onUnmounted, ref, Ref } from 'vue'
 
-import { QueryKeyWithRef } from '../core/types'
+import { QueryKey } from '../core/types'
 import { parseFilterArgs, QueryFilters } from '../core/utils'
 import { useQueryClient } from './QueryClientProvider'
 
 export function useIsFetching(filters?: QueryFilters): Ref<number>
 export function useIsFetching(
-  queryKey?: QueryKeyWithRef,
+  queryKey?: QueryKey,
   filters?: QueryFilters
 ): Ref<number>
 export function useIsFetching(
-  arg1?: QueryKeyWithRef | QueryFilters,
+  arg1?: QueryKey | QueryFilters,
   arg2?: QueryFilters
 ): Ref<number> {
   const queryClient = useQueryClient()

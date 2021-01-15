@@ -146,7 +146,7 @@ export class QueryObserver<
   setOptions(
     options?: QueryObserverOptions<TQueryFnData, TError, TData, TQueryData>
   ): void {
-    const prevOptions = { ...this.options }
+    const prevOptions = this.options
     const prevQuery = this.currentQuery
 
     this.options = this.client.defaultQueryObserverOptions(options)

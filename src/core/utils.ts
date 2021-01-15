@@ -1,17 +1,12 @@
-import { isRef } from 'vue'
-
 import type { Query } from './query'
 import type {
   MutationFunction,
-  MutationKeyWithRef,
+  MutationKey,
   MutationOptions,
-  MutationOptionsWithRef,
   QueryFunction,
   QueryKey,
   QueryKeyHashFunction,
-  QueryKeyWithRef,
   QueryOptions,
-  QueryOptionsWithRef,
   QueryStatus,
 } from './types'
 
@@ -88,9 +83,9 @@ export function timeUntilStale(updatedAt: number, staleTime?: number): number {
 }
 
 export function parseQueryArgs<TOptions extends QueryOptions<any, any, any>>(
-  arg1: QueryKeyWithRef | QueryOptionsWithRef<any, any, any>,
-  arg2?: QueryFunction<any> | QueryOptionsWithRef<any, any, any>,
-  arg3?: QueryOptionsWithRef<any, any, any>
+  arg1: QueryKey | QueryOptions<any, any, any>,
+  arg2?: QueryFunction<any> | QueryOptions<any, any, any>,
+  arg3?: QueryOptions<any, any, any>
 ): TOptions {
   if (!isQueryKey(arg1)) {
     return arg1 as TOptions
@@ -100,49 +95,47 @@ export function parseQueryArgs<TOptions extends QueryOptions<any, any, any>>(
     return { ...arg3, queryKey: arg1, queryFn: arg2 } as TOptions
   }
 
-  return unwrapRefs({ ...arg2, queryKey: arg1 }) as TOptions
+  return { ...arg2, queryKey: arg1 } as TOptions
 }
 
 export function parseMutationArgs<
   TOptions extends MutationOptions<any, any, any, any>
 >(
   arg1:
-    | MutationKeyWithRef
+    | MutationKey
     | MutationFunction<any, any>
-    | MutationOptionsWithRef<any, any, any, any>,
-  arg2?:
-    | MutationFunction<any, any>
-    | MutationOptionsWithRef<any, any, any, any>,
-  arg3?: MutationOptionsWithRef<any, any, any, any>
+    | MutationOptions<any, any, any, any>,
+  arg2?: MutationFunction<any, any> | MutationOptions<any, any, any, any>,
+  arg3?: MutationOptions<any, any, any, any>
 ): TOptions {
   if (isQueryKey(arg1)) {
     if (typeof arg2 === 'function') {
-      return unwrapRefs({
+      return {
         ...arg3,
         mutationKey: arg1,
         mutationFn: arg2,
-      }) as TOptions
+      } as TOptions
     }
-    return unwrapRefs({ ...arg2, mutationKey: arg1 }) as TOptions
+    return { ...arg2, mutationKey: arg1 } as TOptions
   }
 
   if (typeof arg1 === 'function') {
-    return unwrapRefs({ ...arg2, mutationFn: arg1 }) as TOptions
+    return { ...arg2, mutationFn: arg1 } as TOptions
   }
 
-  return unwrapRefs({ ...arg1 }) as TOptions
+  return { ...arg1 } as TOptions
 }
 
 export function parseFilterArgs<
   TFilters extends QueryFilters,
   TOptions = unknown
 >(
-  arg1?: QueryKeyWithRef | TFilters,
+  arg1?: QueryKey | TFilters,
   arg2?: TFilters | TOptions,
   arg3?: TOptions
 ): [TFilters, TOptions | undefined] {
   return (isQueryKey(arg1)
-    ? [{ ...arg2, queryKey: unwrapRefs(arg1) }, arg3]
+    ? [{ ...arg2, queryKey: arg1 }, arg3]
     : [arg1 || {}, arg2]) as [TFilters, TOptions]
 }
 
@@ -417,32 +410,4 @@ export function scheduleMicrotask(callback: () => void): void {
         throw error
       })
     )
-}
-
-/**
- * it will deeply unwrap the value of ref from ref
- */
-export function unwrapRefs(refs: any) {
-  if (isRef(refs)) {
-    return refs.value
-  }
-
-  if (typeof refs === 'function') return refs
-
-  const array = Array.isArray(refs)
-
-  if (array || isPlainObject(refs)) {
-    const items = array ? refs : Object.keys(refs)
-    const size = items.length
-    const copy: any = array ? [] : {}
-
-    for (let i = 0; i < size; i++) {
-      const key = array ? i : items[i]
-
-      copy[key] = isRef(refs[key]) ? refs[key].value : unwrapRefs(refs[key])
-    }
-    return copy
-  }
-
-  return refs
 }

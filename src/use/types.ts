@@ -6,7 +6,6 @@ import {
   MutationStatus,
   QueryObserverOptions,
   QueryObserverResult,
-  WithRef,
 } from '../core/types'
 
 export interface UseBaseQueryOptions<
@@ -22,12 +21,6 @@ export interface UseQueryOptions<
   TData = TQueryFnData
 > extends UseBaseQueryOptions<TQueryFnData, TError, TData> {}
 
-export type UseQueryOptionsWithRef<
-  TQueryFnData = unknown,
-  TError = unknown,
-  TData = TQueryFnData
-> = WithRef<UseQueryOptions<TQueryFnData, TError, TData>>
-
 export interface UseInfiniteQueryOptions<
   TQueryFnData = unknown,
   TError = unknown,
@@ -39,13 +32,6 @@ export interface UseInfiniteQueryOptions<
     TData,
     TQueryData
   > {}
-
-export type UseInfiniteQueryOptionsWithRef<
-  TQueryFnData = unknown,
-  TError = unknown,
-  TData = TQueryFnData,
-  TQueryData = TQueryFnData
-> = WithRef<UseInfiniteQueryOptions<TQueryFnData, TError, TData, TQueryData>>
 
 export type UseBaseQueryResult<
   TData = unknown,
@@ -90,13 +76,6 @@ export interface UseMutationOptions<
   retryDelay?: RetryDelayValue
   useErrorBoundary?: boolean
 }
-
-export type UseMutationOptionsWithRef<
-  TData = unknown,
-  TError = unknown,
-  TVariables = void,
-  TContext = unknown
-> = WithRef<UseMutationOptions<TData, TError, TVariables, TContext>>
 
 export type UseMutateFunction<
   TData = unknown,

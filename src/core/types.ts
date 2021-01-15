@@ -1,23 +1,9 @@
-import { Ref } from 'vue'
-
 import type { MutationState } from './mutation'
 import type { QueryBehavior } from './query'
 import type { RetryValue, RetryDelayValue } from './retryer'
 import type { QueryFilters } from './utils'
 
-export type WithRefRecord<T> = {
-  [K in keyof T]: T[K] | Ref<T[K]>
-}
-
-export type WithRef<T> = WithRefRecord<T> | Ref<T>
-
-export type WithRefFn<T> = T extends (...arg: infer P) => infer R
-  ? (...arg: WithRefRecord<P>) => R
-  : never
-
 export type QueryKey = string | unknown[]
-
-export type QueryKeyWithRef = WithRef<QueryKey>
 
 export type QueryFunction<T = unknown> = (
   context: QueryFunctionContext<any>
@@ -92,12 +78,6 @@ export interface QueryOptions<
   getNextPageParam?: GetNextPageParamFunction<TQueryFnData>
   _defaulted?: boolean
 }
-
-export type QueryOptionsWithRef<
-  TQueryFnData = unknown,
-  TError = unknown,
-  TData = TQueryFnData
-> = WithRef<QueryOptions<TQueryFnData, TError, TData>>
 
 export interface QueryObserverOptions<
   TQueryFnData = unknown,
@@ -454,8 +434,6 @@ export type InfiniteQueryObserverResult<TData = unknown, TError = unknown> =
 
 export type MutationKey = string | unknown[]
 
-export type MutationKeyWithRef = WithRef<string | unknown[]>
-
 export type MutationStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export type MutationFunction<TData = unknown, TVariables = unknown> = (
@@ -492,13 +470,6 @@ export interface MutationOptions<
   retryDelay?: RetryDelayValue
   _defaulted?: boolean
 }
-
-export type MutationOptionsWithRef<
-  TData = unknown,
-  TError = unknown,
-  TVariables = void,
-  TContext = unknown
-> = WithRef<MutationOptions<TData, TError, TVariables, TContext>>
 
 export interface MutationObserverOptions<
   TData = unknown,

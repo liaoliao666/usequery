@@ -19,7 +19,6 @@ import type {
   MutationOptions,
   QueryFunction,
   QueryKey,
-  QueryKeyWithRef,
   QueryObserverOptions,
   QueryOptions,
   RefetchOptions,
@@ -91,11 +90,8 @@ export class QueryClient {
   }
 
   isFetching(filters?: QueryFilters): number
-  isFetching(queryKey?: QueryKeyWithRef, filters?: QueryFilters): number
-  isFetching(
-    arg1?: QueryKeyWithRef | QueryFilters,
-    arg2?: QueryFilters
-  ): number {
+  isFetching(queryKey?: QueryKey, filters?: QueryFilters): number
+  isFetching(arg1?: QueryKey | QueryFilters, arg2?: QueryFilters): number {
     const [filters] = parseFilterArgs(arg1, arg2)
     filters.fetching = true
     return this.queryCache.findAll(filters).length
@@ -109,7 +105,7 @@ export class QueryClient {
   }
 
   setQueryData<TData>(
-    queryKey: QueryKeyWithRef,
+    queryKey: QueryKey,
     updater: Updater<TData | undefined, TData>,
     options?: SetDataOptions
   ): TData {
@@ -121,18 +117,15 @@ export class QueryClient {
   }
 
   getQueryState<TData = unknown, TError = undefined>(
-    queryKey: QueryKeyWithRef,
+    queryKey: QueryKey,
     filters?: QueryFilters
   ): QueryState<TData, TError> | undefined {
     return this.queryCache.find<TData, TError>(queryKey, filters)?.state
   }
 
   removeQueries(filters?: QueryFilters): void
-  removeQueries(queryKey?: QueryKeyWithRef, filters?: QueryFilters): void
-  removeQueries(
-    arg1?: QueryKeyWithRef | QueryFilters,
-    arg2?: QueryFilters
-  ): void {
+  removeQueries(queryKey?: QueryKey, filters?: QueryFilters): void
+  removeQueries(arg1?: QueryKey | QueryFilters, arg2?: QueryFilters): void {
     const [filters] = parseFilterArgs(arg1, arg2)
     const queryCache = this.queryCache
     queryCache.findAll(filters).forEach(query => {
@@ -142,12 +135,12 @@ export class QueryClient {
 
   resetQueries(filters?: QueryFilters, options?: ResetOptions): Promise<void>
   resetQueries(
-    queryKey?: QueryKeyWithRef,
+    queryKey?: QueryKey,
     filters?: QueryFilters,
     options?: ResetOptions
   ): Promise<void>
   resetQueries(
-    arg1?: QueryKeyWithRef | QueryFilters,
+    arg1?: QueryKey | QueryFilters,
     arg2?: QueryFilters | ResetOptions,
     arg3?: ResetOptions
   ): Promise<void> {
@@ -167,12 +160,12 @@ export class QueryClient {
 
   cancelQueries(filters?: QueryFilters, options?: CancelOptions): Promise<void>
   cancelQueries(
-    queryKey?: QueryKeyWithRef,
+    queryKey?: QueryKey,
     filters?: QueryFilters,
     options?: CancelOptions
   ): Promise<void>
   cancelQueries(
-    arg1?: QueryKeyWithRef | QueryFilters,
+    arg1?: QueryKey | QueryFilters,
     arg2?: QueryFilters | CancelOptions,
     arg3?: CancelOptions
   ): Promise<void> {
@@ -194,12 +187,12 @@ export class QueryClient {
     options?: InvalidateOptions
   ): Promise<void>
   invalidateQueries(
-    queryKey?: QueryKeyWithRef,
+    queryKey?: QueryKey,
     filters?: InvalidateQueryFilters,
     options?: InvalidateOptions
   ): Promise<void>
   invalidateQueries(
-    arg1?: QueryKeyWithRef | InvalidateQueryFilters,
+    arg1?: QueryKey | InvalidateQueryFilters,
     arg2?: InvalidateQueryFilters | InvalidateOptions,
     arg3?: InvalidateOptions
   ): Promise<void> {
@@ -222,12 +215,12 @@ export class QueryClient {
     options?: RefetchOptions
   ): Promise<void>
   refetchQueries(
-    queryKey?: QueryKeyWithRef,
+    queryKey?: QueryKey,
     filters?: QueryFilters,
     options?: RefetchOptions
   ): Promise<void>
   refetchQueries(
-    arg1?: QueryKeyWithRef | QueryFilters,
+    arg1?: QueryKey | QueryFilters,
     arg2?: QueryFilters | RefetchOptions,
     arg3?: RefetchOptions
   ): Promise<void> {
@@ -250,16 +243,16 @@ export class QueryClient {
     options: FetchQueryOptions<TQueryFnData, TError, TData>
   ): Promise<TData>
   fetchQuery<TQueryFnData = unknown, TError = unknown, TData = TQueryFnData>(
-    queryKey: QueryKeyWithRef,
+    queryKey: QueryKey,
     options?: FetchQueryOptions<TQueryFnData, TError, TData>
   ): Promise<TData>
   fetchQuery<TQueryFnData = unknown, TError = unknown, TData = TQueryFnData>(
-    queryKey: QueryKeyWithRef,
+    queryKey: QueryKey,
     queryFn: QueryFunction<TQueryFnData>,
     options?: FetchQueryOptions<TQueryFnData, TError, TData>
   ): Promise<TData>
   fetchQuery<TQueryFnData, TError, TData = TQueryFnData>(
-    arg1: QueryKeyWithRef | FetchQueryOptions<TQueryFnData, TError, TData>,
+    arg1: QueryKey | FetchQueryOptions<TQueryFnData, TError, TData>,
     arg2?:
       | QueryFunction<TQueryFnData>
       | FetchQueryOptions<TQueryFnData, TError, TData>,
@@ -340,16 +333,16 @@ export class QueryClient {
 
   prefetchInfiniteQuery(options: FetchInfiniteQueryOptions): Promise<void>
   prefetchInfiniteQuery(
-    queryKey: QueryKeyWithRef,
+    queryKey: QueryKey,
     options?: FetchInfiniteQueryOptions
   ): Promise<void>
   prefetchInfiniteQuery(
-    queryKey: QueryKeyWithRef,
+    queryKey: QueryKey,
     queryFn: QueryFunction,
     options?: FetchInfiniteQueryOptions
   ): Promise<void>
   prefetchInfiniteQuery(
-    arg1: QueryKeyWithRef | FetchInfiniteQueryOptions,
+    arg1: QueryKey | FetchInfiniteQueryOptions,
     arg2?: QueryFunction | FetchInfiniteQueryOptions,
     arg3?: FetchInfiniteQueryOptions
   ): Promise<void> {
