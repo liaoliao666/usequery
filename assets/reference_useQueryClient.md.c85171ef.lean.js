@@ -1,1 +1,0 @@
-import{l as e,f as n,G as s}from"./framework.dc3bd9a4.js";const t='{"title":"useQueryClient","description":"","frontmatter":{"id":"useQueryClient","title":"useQueryClient"},"relativePath":"reference/useQueryClient.md","lastUpdated":1610702694512}',a={},o=s('',2);a.render=function(s,t,a,r,p,u){return e(),n("div",null,[o])};export default a;export{t as __pageData};
