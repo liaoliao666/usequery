@@ -66,17 +66,12 @@ import { toRefs, ref, reactive } from 'vue'
 import { useInfiniteQuery } from 'vu-query'
 import useIntersectionObserver from '../composable/useIntersectionObserver'
 import loadProjects from '../api/projects'
-
 export default {
   setup() {
     const query = useInfiniteQuery(
       'projects',
       async ({ pageParam = 0 }) => {
         const data = await loadProjects(pageParam)
-        console.log(
-          'data',
-          data?.data.map(item => item.id)
-        )
         return data
       },
       {
@@ -92,11 +87,11 @@ export default {
       isFetching,
       isFetchingNextPage,
       isFetchingPreviousPage,
+      fetchNextPage,
+      fetchPreviousPage,
       hasNextPage,
       hasPreviousPage,
     } = toRefs(query)
-
-    const { fetchNextPage, fetchPreviousPage } = query
 
     const loadMoreButtonRef = ref()
     useIntersectionObserver(

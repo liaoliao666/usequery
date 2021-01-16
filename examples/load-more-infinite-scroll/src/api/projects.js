@@ -1,4 +1,6 @@
 // an endpoint for getting projects data
+const hash = {}
+
 export default cursor => {
   cursor = parseInt(cursor) || 0
   const pageSize = 5
@@ -7,7 +9,10 @@ export default cursor => {
     .fill(0)
     .map((_, i) => {
       return {
-        name: 'Project ' + (i + cursor) + ` (server time: ${Date.now()})`,
+        name:
+          hash[i + cursor] ||
+          (hash[i + cursor] =
+            'Project ' + (i + cursor) + ` (server time: ${Date.now()})`),
         id: i + cursor,
       }
     })
