@@ -18,9 +18,9 @@
           }}
         </button>
       </div>
-      <div v-for="page in data.pages" :key="page.nextId">
+      <template v-for="page in data.pages" :key="page.nextId">
         <p
-          v-for="project in page"
+          v-for="project in page.data"
           :key="project.id"
           :style="{
             border: '1px solid gray',
@@ -31,7 +31,7 @@
         >
           {{ project.name }}
         </p>
-      </div>
+      </template>
 
       <div>
         <button
@@ -64,16 +64,20 @@
 <script>
 import { toRefs, ref, reactive } from 'vue'
 import { useInfiniteQuery } from 'vu-query'
-import axios from 'axios'
 import useIntersectionObserver from '../composable/useIntersectionObserver'
+import loadProjects from '../api/projects'
 
 export default {
   setup() {
     const query = useInfiniteQuery(
       'projects',
       async ({ pageParam = 0 }) => {
-        const res = await axios.get('/api/projects?cursor=' + pageParam)
-        return res.data
+        const data = await loadProjects(pageParam)
+        console.log(
+          'data',
+          data?.data.map(item => item.id)
+        )
+        return data
       },
       {
         getPreviousPageParam: firstPage => firstPage.previousId ?? false,
@@ -88,11 +92,11 @@ export default {
       isFetching,
       isFetchingNextPage,
       isFetchingPreviousPage,
-      fetchNextPage,
-      fetchPreviousPage,
       hasNextPage,
       hasPreviousPage,
     } = toRefs(query)
+
+    const { fetchNextPage, fetchPreviousPage } = query
 
     const loadMoreButtonRef = ref()
     useIntersectionObserver(

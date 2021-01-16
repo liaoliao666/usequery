@@ -4,8 +4,7 @@ title: Installation
 ---
 
 You can install Vu Query with [NPM](https://npmjs.com),
-[Yarn](https://yarnpkg.com), or a good ol' `<script>` via
-[unpkg.com](https://unpkg.com).
+[Yarn](https://yarnpkg.com)
 
 ### NPM
 

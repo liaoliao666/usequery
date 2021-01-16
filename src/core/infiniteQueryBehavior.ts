@@ -45,10 +45,10 @@ export function infiniteQueryBehavior<
           }
 
           const promise = Promise.resolve(queryFnResult).then(page => {
-            newPageParams = previous
-              ? [param, ...newPageParams]
-              : [...newPageParams, param]
-            return previous ? [page, ...pages] : [...pages, page]
+            const method = previous ? 'unshift' : 'push'
+            newPageParams[method](param)
+            pages[method](page)
+            return pages
           })
 
           if (cancelFn) {

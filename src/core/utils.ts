@@ -263,13 +263,13 @@ export function replaceEqualDeep(a: any, b: any) {
   if (isSameObject) {
     if (array) {
       const bSize = b.length
-      // omit array keys
       if (a.length > bSize) {
+        // omit array keys
         a.splice(bSize)
       }
 
-      // pick array keys
       for (let i = 0; i < bSize; i++) {
+        // pick array keys
         a[i] = replaceEqualDeep(a[i], b[i])
       }
     } else {

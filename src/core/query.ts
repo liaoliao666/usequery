@@ -375,7 +375,7 @@ export class Query<
       fetchOptions,
       options: this.options,
       queryKey,
-      state: this.state,
+      state: this.internalState,
       fetchFn,
     }
 

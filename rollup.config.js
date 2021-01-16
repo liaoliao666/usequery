@@ -54,7 +54,7 @@ export default [
   {
     input: inputSrc,
     output: {
-      name: 'VueQuery',
+      name: 'VuQuery',
       file: 'dist/vu-query.development.js',
       format: 'umd',
       sourcemap: true,
@@ -71,7 +71,7 @@ export default [
   {
     input: inputSrc,
     output: {
-      name: 'VueQuery',
+      name: 'VuQuery',
       file: 'dist/vu-query.production.min.js',
       format: 'umd',
       sourcemap: true,

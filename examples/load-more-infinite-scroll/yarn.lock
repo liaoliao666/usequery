@@ -8202,10 +8202,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vu-query@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/vu-query/-/vu-query-0.0.0.tgz#0eec3952d91f82530cad12ef754ff2e748dfcda6"
-  integrity sha512-XqcDJyGKdVqEa4zS0PtRIr0qwzHExIfiUpohdr3/9MTF9bNSYbFWJ1AKqZuF4vmFiWbTcnhw0A7GYDIFII+KqA==
+vu-query@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/vu-query/-/vu-query-0.0.1.tgz#9e6692af34cdeea0d9cd532712fd387e035a9c69"
+  integrity sha512-xE174ux5KuQa/bBythBiJrcssXypADft8G6Rqqf/vBMi4cSvXGxt8h6l30ZaZ5FuXKQ00w16Nh1BpAZ18QY6ug==
   dependencies:
     "@babel/runtime" "^7.12.5"
     vue "^3.0.0"

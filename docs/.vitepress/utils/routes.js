@@ -192,11 +192,6 @@ const routesConfig = [
         editUrl: '/examples/simple.mdx',
       },
       {
-        title: 'Basic',
-        path: '/examples/basic',
-        editUrl: '/examples/basic.mdx',
-      },
-      {
         title: 'Basic w/ GraphQL-Request',
         path: '/examples/basic-graphql-request',
         editUrl: '/examples/basic-graphql-request.mdx',
