@@ -1,3 +1,4 @@
+import { isReactive } from 'vue'
 import type { Query } from './query'
 import type {
   MutationFunction,
@@ -249,6 +250,11 @@ export function partialDeepEqual(a: any, b: any): boolean {
   return false
 }
 
+function checkIsPassReactive(data: unknown) {
+  if (isReactive(data))
+    throw new Error('could not reactive to setQueryData or select')
+}
+
 /**
  * it will replace any deeply equal children of `b` with those of `a`.
  * This can be used for structural sharing between JSON values for example.
@@ -270,6 +276,7 @@ export function replaceEqualDeep(a: any, b: any) {
 
       for (let i = 0; i < bSize; i++) {
         // pick array keys
+        checkIsPassReactive(b[i])
         a[i] = replaceEqualDeep(a[i], b[i])
       }
     } else {
@@ -288,6 +295,7 @@ export function replaceEqualDeep(a: any, b: any) {
       for (let i = 0, len = bKeys.length; i < len; i++) {
         const key = bKeys[i]
         // pick object keys
+        checkIsPassReactive(b[key])
         a[key] = replaceEqualDeep(a[key], b[key])
       }
     }

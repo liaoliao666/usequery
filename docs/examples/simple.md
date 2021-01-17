@@ -8,7 +8,7 @@ toc: false
 - [View Source](https://github.com/liaoliao666/vu-query/tree/master/examples/simple)
 
 <iframe
-  src="https://github.com/liaoliao666/vu-query/tree/master/examples/simple?autoresize=1&fontsize=14&theme=dark"
+  src="https://codesandbox.io/embed/github/liaoliao666/vu-query/tree/master/examples/simple?autoresize=1&fontsize=14&theme=dark"
   title="liaoliao666/vu-query: basic"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
   style="

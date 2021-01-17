@@ -82,23 +82,23 @@ export function useMutation<
       // Update options
       if (observer.hasListeners()) {
         observer.setOptions(options)
-      } else {
-        // init observer & currentResult
-        observer = new MutationObserver(queryClient, options)
-
-        const mutate: UseMutateFunction<TData, TError, TVariables, TContext> = (
-          variables,
-          mutateOptions
-        ) => {
-          observer.mutate(variables, mutateOptions).catch(noop)
-        }
-
-        currentResult = reactive({
-          ...observer.getCurrentResult(),
-          mutate,
-          mutateAsync: observer.getCurrentResult().mutate,
-        }) as UseMutationResult<TData, TError, TVariables, TContext>
       }
+    } else {
+      // init observer & currentResult
+      observer = new MutationObserver(queryClient, options)
+
+      const mutate: UseMutateFunction<TData, TError, TVariables, TContext> = (
+        variables,
+        mutateOptions
+      ) => {
+        observer.mutate(variables, mutateOptions).catch(noop)
+      }
+
+      currentResult = reactive({
+        ...observer.getCurrentResult(),
+        mutate,
+        mutateAsync: observer.getCurrentResult().mutate,
+      }) as UseMutationResult<TData, TError, TVariables, TContext>
     }
   })
 
@@ -117,6 +117,17 @@ export function useMutation<
   onUnmounted(() => {
     unsubscribe?.()
   })
+
+  watchEffect(
+    () => {
+      if (currentResult.error && observer.options.useErrorBoundary) {
+        throw currentResult.error
+      }
+    },
+    {
+      flush: 'pre',
+    }
+  )
 
   return readonly(currentResult) as UseMutationResult<
     TData,

@@ -410,7 +410,6 @@ export class QueryObserver<
     }
 
     const result: QueryObserverBaseResult<TData, TError> = {
-      ...getStatusProps(status),
       data,
       dataUpdatedAt,
       error: state.error,
@@ -428,6 +427,7 @@ export class QueryObserver<
       isStale: this.isStale(),
       refetch: this.refetch,
       remove: this.remove,
+      ...getStatusProps(status),
     }
 
     if (this.currentResult) {

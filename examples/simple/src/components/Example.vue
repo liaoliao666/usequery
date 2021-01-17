@@ -1,7 +1,5 @@
 <template>
-  <span v-if="isLoading"></span>
-  <span v-else-if="error">{{ 'An error has occurred: ' + error.message }}</span>
-  <div v-else>
+  <div>
     <h1>{{ data.name }}</h1>
     <p>{{ data.description }}</p>
     <strong>👀 {{ data.subscribers_count }}</strong
@@ -14,22 +12,20 @@
 </template>
 
 <script>
-import { toRefs } from 'vue'
-import { useQuery } from 'vu-query'
+import { computed, toRefs } from 'vue'
+import usePost from '../composable/usePost'
 
 export default {
   setup() {
     const query = useQuery('repoData', () =>
-      fetch('https://api.github.com/repos/liaoliao666/vu-query').then(res =>
-        res.json()
-      )
+      fetch(
+        'https://api.github.com/repos/tannerlinsley/react-query'
+      ).then(res => res.json())
     )
 
-    const { isLoading, error, data, isFetching } = toRefs(query)
+    const { data, isFetching } = toRefs(query)
 
     return {
-      isLoading,
-      error,
       data,
       isFetching,
     }

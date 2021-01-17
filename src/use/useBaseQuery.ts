@@ -2,6 +2,7 @@ import { onMounted, onUnmounted, watchEffect } from 'vue'
 
 import { QueryObserver } from '../core/queryObserver'
 import { useQueryClient } from './QueryClientProvider'
+import { useQueryErrorResetBoundary } from './QueryErrorResetBoundary'
 import { UseBaseQueryOptions } from './types'
 
 export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
@@ -9,6 +10,7 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
   Observer: typeof QueryObserver
 ) {
   const queryClient = useQueryClient()
+  const errorResetBoundary = useQueryErrorResetBoundary()
 
   let observer!: QueryObserver<any, any, any, any>
 
@@ -42,6 +44,7 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
   // Subscribe to the observer
   let unsubscribe: () => void
   onMounted(() => {
+    errorResetBoundary.clearReset()
     unsubscribe = observer.subscribe()
   })
   onUnmounted(() => {
@@ -49,7 +52,25 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
   })
 
   // Handle suspense
-  if (observer.options.suspense && currentResult.isLoading) {
+  watchEffect(
+    () => {
+      if (observer.options.suspense || observer.options.useErrorBoundary) {
+        if (
+          currentResult.isError &&
+          !errorResetBoundary.isReset() &&
+          !observer.getCurrentQuery().isFetching()
+        ) {
+          throw currentResult.error
+        }
+      }
+    },
+    {
+      flush: 'pre',
+    }
+  )
+
+  if (observer.options.suspense) {
+    errorResetBoundary.clearReset()
     const unsubscribe = observer.subscribe()
     throw observer.refetch().finally(unsubscribe)
   }
