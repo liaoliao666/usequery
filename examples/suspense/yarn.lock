@@ -8217,10 +8217,17 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vu-query@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/vu-query/-/vu-query-0.0.5.tgz#f4e075085c520110d372fced10ababcb4a01d7f7"
-  integrity sha512-+s+mQ54AECc/caByiI3E9V/30FwgdI93MrY5Cin+24/KYR8/e3ywimph39J5TTge6kxvgfW6wtKMcCnjsMg1bQ==
+vu-error-boundary@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/vu-error-boundary/-/vu-error-boundary-0.0.0.tgz#a39d8562aaa0fc97ad754925053b3bee8868f0a2"
+  integrity sha512-2h7yhGEvceHCE6lcyrxNnILAL/R0KQQH4vm/miwwvDN6Xl87MX5RobFx/bycEqOFKTmKrvG6LqvSDEheo/iLJw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
+vu-query@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/vu-query/-/vu-query-0.0.11.tgz#1172499436c338bdaff8b67585b52f1e274f2ac3"
+  integrity sha512-SSOPdlj8FKhczedBixAlSBo3HzR8JKupc3l9iSjWVVQACKYTCEZI+3CPvnqfVAmWxCD39SqLw4DgTxB+O8X6yg==
   dependencies:
     "@babel/runtime" "^7.12.5"
 

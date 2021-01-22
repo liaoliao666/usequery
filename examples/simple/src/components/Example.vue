@@ -16,7 +16,7 @@ import { computed, toRefs } from 'vue'
 import usePost from '../composable/usePost'
 
 export default {
-  setup() {
+  async setup() {
     const query = useQuery('repoData', () =>
       fetch(
         'https://api.github.com/repos/tannerlinsley/react-query'

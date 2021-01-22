@@ -1,5 +1,5 @@
-import { QueryClient } from '../../../forks/react-query/src/core'
-import { dehydrate, hydrate } from '../../../forks/react-query/src/hydration'
+import { QueryClient } from '../core'
+import { dehydrate, hydrate } from '../hydration'
 
 interface LocalStorageCache {
   timestamp: number

@@ -1,8 +1,8 @@
-import { defineComponent, inject, provide } from 'vue'
+import { defineComponent, inject, provide, renderSlot } from 'vue'
 
 // CONTEXT
 
-interface QueryErrorResetBoundaryValue {
+type QueryErrorResetBoundaryValue = {
   clearReset: () => void
   isReset: () => boolean
   reset: () => void
@@ -35,8 +35,9 @@ export const useQueryErrorResetBoundary = () =>
 export const QueryErrorResetBoundary = defineComponent({
   name: 'QueryErrorResetBoundary',
   setup(_, { slots }) {
-    provide(symbol, createValue())
+    const value = createValue()
+    provide(symbol, value)
 
-    return () => slots.default?.()
+    return () => renderSlot(slots, 'default', value)
   },
 })

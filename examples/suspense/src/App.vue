@@ -1,9 +1,6 @@
 <template>
   <QueryClientProvider :client="queryClient">
-    <Suspense>
-      <template #default><Example /></template>
-      <template #fallback> loading </template>
-    </Suspense>
+    <Example />
   </QueryClientProvider>
 </template>
 
@@ -14,7 +11,7 @@ import { QueryClient, QueryClientProvider } from 'vu-query'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3,
+      retry: 0,
       suspense: true,
     },
   },

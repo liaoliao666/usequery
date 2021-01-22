@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, watchEffect } from 'vue'
+import { onMounted, onUnmounted, watch, watchEffect } from 'vue'
 
 import { QueryObserver } from '../core/queryObserver'
 import { useQueryClient } from './QueryClientProvider'
@@ -52,7 +52,7 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
   })
 
   // Handle suspense
-  watchEffect(
+  const stopWatchIsError = watchEffect(
     () => {
       if (observer.options.suspense || observer.options.useErrorBoundary) {
         if (
@@ -68,12 +68,32 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
       flush: 'pre',
     }
   )
+  const stopWatchIsSuspense = watch(
+    () => observer.options.suspense,
+    isSuspense => {
+      // if its not suspense, stop watching
+      const stop = () => {
+        // if its not useErrorBoundary, stop watching error
+        if (!observer.options.useErrorBoundary) {
+          stopWatchIsError()
+        }
 
-  if (observer.options.suspense) {
-    errorResetBoundary.clearReset()
-    const unsubscribe = observer.subscribe()
-    throw observer.refetch().finally(unsubscribe)
-  }
+        stopWatchIsSuspense()
+      }
+
+      if (isSuspense) {
+        errorResetBoundary.clearReset()
+        const unsubscribe = observer.subscribe()
+        observer.refetch().then(stop).finally(unsubscribe)
+      } else {
+        stop()
+      }
+    },
+    {
+      flush: 'pre',
+      immediate: true,
+    }
+  )
 
   return currentResult
 }

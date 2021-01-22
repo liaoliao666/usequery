@@ -1,56 +1,81 @@
 <template>
-  <h1 v-if="status === 'loading'">Loading...</h1>
-  <span v-else-if="status === 'error'">Error: {{ error.message }}</span>
-  <div v-else>
-    <h1>Auto Refetch with stale-time set to 1s)</h1>
-    <p>
-      This example is best experienced on your own machine, where you can open
-      multiple tabs to the same localhost server and see your changes propagate
-      between the two.
-    </p>
-    <label>
-      Query Interval speed (ms):&nbsp;
-      <span
-        :style="{
-          display: 'inline-block',
-          marginLeft: '.5rem',
-          width: 10,
-          height: 10,
-          background: isFetching ? 'green' : 'transparent',
-          transition: !isFetching ? 'all .3s ease' : 'none',
-          borderRadius: '100%',
-          transform: 'scale(2)',
-        }"
-      />
-    </label>
-    <h2>Todo List</h2>
-    <ul>
-      <li v-for="item in data" :key="item">{{ item }}</li>
-    </ul>
-  </div>
+  <Button
+    @click="
+      () => {
+        if (!showProjects) {
+          queryClient.prefetchQuery('projects', fetchProjects)
+        }
+        setShowProjects(!showProjects)
+      }
+    "
+  >
+    {{ showProjects ? 'Hide Projects' : 'Show Projects' }}
+  </Button>
+
+  <hr />
+
+  <QueryErrorResetBoundary>
+    <template #default="{ reset }">
+      <ErrorBoundary @reset="reset">
+        <Suspense v-if="showProjects">
+          <template #default>
+            <Project
+              v-if="activeProject"
+              :activeProject="activeProject"
+              @setActiveProject="setActiveProject"
+            />
+            <Projects v-else @setActiveProject="setActiveProject" />
+          </template>
+          <template #fallback>
+            <h1>Loading projects...</h1>
+          </template>
+        </Suspense>
+        <template #fallback="{ resetErrorBoundary, error }">
+          <div>
+            There was an error!&nbsp;
+            <button @click="() => resetErrorBoundary()">Try again</button>
+            <pre :style="{ whiteSpace: 'normal' }">{{ error }}</pre>
+          </div>
+        </template>
+      </ErrorBoundary>
+    </template>
+  </QueryErrorResetBoundary>
 </template>
 
 <script>
-import { toRefs } from 'vue'
-import { useQuery } from 'vu-query'
-import { when } from '@vueuse/core'
-import dataApi from '../api/data'
+import { ref, defineAsyncComponent } from 'vue'
+import { useQueryClient, QueryErrorResetBoundary } from 'vu-query'
+import { ErrorBoundary } from 'vu-error-boundary'
+
+import { fetchProjects } from '../api/queries'
+import Button from './Button.vue'
 
 export default {
-  async setup() {
-    const query = useQuery('todos', async () => {
-      return dataApi()
-    })
-
-    const { status, data, error, isFetching } = toRefs(query)
-
-    await when(status).toBe('success')
+  components: {
+    ErrorBoundary,
+    QueryErrorResetBoundary,
+    Button,
+    Projects: defineAsyncComponent(() => import('./Projects.vue')),
+    Project: defineAsyncComponent(() => import('./Project.vue')),
+  },
+  setup() {
+    const queryClient = useQueryClient()
+    const showProjects = ref(false)
+    const setShowProjects = bool => {
+      showProjects.value = bool
+    }
+    const activeProject = ref(null)
+    const setActiveProject = name => {
+      activeProject.value = name
+    }
 
     return {
-      status,
-      data,
-      error,
-      isFetching,
+      queryClient,
+      showProjects,
+      setShowProjects,
+      activeProject,
+      setActiveProject,
+      fetchProjects,
     }
   },
 }
