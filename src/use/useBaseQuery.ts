@@ -52,9 +52,9 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
   })
 
   // Handle suspense
-  const stopWatchIsError = watchEffect(
-    () => {
-      if (observer.options.suspense || observer.options.useErrorBoundary) {
+  if (observer.options.suspense || observer.options.useErrorBoundary) {
+    const stopWatchIsError = watchEffect(
+      () => {
         if (
           currentResult.isError &&
           !errorResetBoundary.isReset() &&
@@ -62,38 +62,38 @@ export function useBaseQuery<TQueryFnData, TError, TData, TQueryData>(
         ) {
           throw currentResult.error
         }
+      },
+      {
+        flush: 'pre',
       }
-    },
-    {
-      flush: 'pre',
-    }
-  )
-  const stopWatchIsSuspense = watch(
-    () => observer.options.suspense,
-    isSuspense => {
-      // if its not suspense, stop watching
-      const stop = () => {
-        // if its not useErrorBoundary, stop watching error
-        if (!observer.options.useErrorBoundary) {
-          stopWatchIsError()
+    )
+    const stopWatchIsSuspense = watch(
+      () => observer.options.suspense,
+      isSuspense => {
+        // if its not suspense, stop watching
+        const stop = () => {
+          // if its not useErrorBoundary, stop watching error
+          if (!observer.options.useErrorBoundary) {
+            stopWatchIsError?.()
+          }
+
+          stopWatchIsSuspense?.()
         }
 
-        stopWatchIsSuspense()
+        if (isSuspense) {
+          errorResetBoundary.clearReset()
+          const unsubscribe = observer.subscribe()
+          observer.refetch().then(stop).finally(unsubscribe)
+        } else {
+          stop()
+        }
+      },
+      {
+        flush: 'pre',
+        immediate: true,
       }
-
-      if (isSuspense) {
-        errorResetBoundary.clearReset()
-        const unsubscribe = observer.subscribe()
-        observer.refetch().then(stop).finally(unsubscribe)
-      } else {
-        stop()
-      }
-    },
-    {
-      flush: 'pre',
-      immediate: true,
-    }
-  )
+    )
+  }
 
   return currentResult
 }

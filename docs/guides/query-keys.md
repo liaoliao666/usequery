@@ -63,6 +63,34 @@ useQuery(['todos', undefined, page, status], ...)
 
 ## If your query function depends on a variable, include it in your query key
 
+::: warning
+pls dont set any ref variables in the array of reactive, just can only set it in the object of reactive. because it could not automatically unwrap ref to ref.value
+
+```{6}
+const Todos = defineComponent({
+  setup() {
+    const todoId = ref(0)
+    // its wrong
+    // will get `["todos",{"_rawValue":0,"_shallow":false,"__v_isRef":true,"_value":0}]`
+    const queryKey = ['todos', reactive([todoId])]
+    const result = useQuery(, () => fetchTodoById(todoId.value))
+  },
+})
+```
+
+```{6}
+const Todos = defineComponent({
+  setup() {
+    const todoId = ref(0)
+    // its correct
+    // will get `["todos",{"todoId":0}]`
+    const queryKey = ['todos', reactive({ todoId })]
+    const result = useQuery(queryKey, () => fetchTodoById(todoId.value))
+  },
+})
+```
+:::
+
 Since query keys uniquely describe the data they are fetching, they should include any variables you use in your query function that **change**. For example:
 
 ```js

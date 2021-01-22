@@ -1,6 +1,6 @@
 {
   "name": "vu-query",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "🌈 Composables api for fetching, caching and updating asynchronous data in Vue 3",
   "author": "liaoliao666",
   "license": "MIT",

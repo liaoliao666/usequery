@@ -4,6 +4,14 @@ title: useMutation
 ---
 
 ```js
+const mutation = useMutation(mutationFn, {
+  onError,
+  onMutate,
+  onSettled,
+  onSuccess,
+  useErrorBoundary,
+})
+
 const {
   data,
   error,
@@ -16,13 +24,7 @@ const {
   mutateAsync,
   reset,
   status,
-} = useMutation(mutationFn, {
-  onError,
-  onMutate,
-  onSettled,
-  onSuccess,
-  useErrorBoundary,
-})
+} = toRefs(mutation)
 
 mutate(variables, {
   onError,

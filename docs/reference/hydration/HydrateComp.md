@@ -8,9 +8,11 @@ title: hydration/Hydrate
 ```js
 import { Hydrate } from 'vu-query/hydration'
 
-function App() {
-  return <Hydrate state={dehydratedState}>...</Hydrate>
-}
+const App = defineComponet({
+  render() {
+    return <Hydrate state={dehydratedState}>...</Hydrate>
+  }
+})
 ```
 
 **Options**

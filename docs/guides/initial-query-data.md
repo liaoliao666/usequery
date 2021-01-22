@@ -8,8 +8,8 @@ There are many ways to supply initial data for a query to the cache before you n
 - Declaratively:
   - Provide `initialData` to a query to prepopulate the its cache if empty
 - Imperatively:
-  - [Prefetch the data using `queryClient.prefetchQuery`](../prefetching)
-  - [Manually place the data into the cache using `queryClient.setQueryData`](../prefetching)
+  - [Prefetch the data using `queryClient.prefetchQuery`](/prefetching)
+  - [Manually place the data into the cache using `queryClient.setQueryData`](/prefetching)
 
 ## Using `initialData` to prepopulate a query
 
@@ -62,10 +62,10 @@ In some circumstances, you may be able to provide the initial data for a query f
 
 ```js
 function Todo({ todoId }) {
-  const result = useQuery(['todo', todoId], () => fetch('/todos'), {
+  const result = useQuery(reactive(['todo', { todoId }]), () => fetch('/todos'), {
     initialData: () => {
       // Use a todo from the 'todos' query as the initial data for this todo query
-      return queryClient.getQueryData('todos')?.find(d => d.id === todoId)
+      return queryClient.getQueryData('todos')?.find(d => d.id === unref(todoId))
     },
   })
 }
@@ -75,7 +75,7 @@ Most of the time, this pattern works well, but if the source query you're using 
 
 ```js
 function Todo({ todoId }) {
-  const result = useQuery(['todo', todoId], () => fetch('/todos'), {
+  const result = useQuery(reactive(['todo', { todoId }]), () => fetch('/todos'), {
     initialData: () => {
       // Get the query state
       const state = queryClient.getQueryState('todos')
@@ -83,7 +83,7 @@ function Todo({ todoId }) {
       // If the query exists and has data that is no older than 10 seconds...
       if (state && Date.now() - state.dataUpdatedAt <= 10 * 1000) {
         // return the individual todo
-        return state.data.find(d => d.id === todoId)
+        return state.data.find(d => d.id === unref(todoId))
       }
 
       // Otherwise, return undefined and let it fetch!

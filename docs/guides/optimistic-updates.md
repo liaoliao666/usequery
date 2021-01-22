@@ -19,10 +19,14 @@ useMutation(updateTodo, {
     await queryClient.cancelQueries('todos')
 
     // Snapshot the previous value
-    const previousTodos = queryClient.getQueryData('todos')
+    const previousTodos = _.cloneDeep(queryClient.getQueryData('todos'))
 
     // Optimistically update to the new value
-    queryClient.setQueryData('todos', old => [...old, newTodo])
+    queryClient.setQueryData('todos', old => {
+      old.push(newTodo)
+
+      return old
+    })
 
     // Return a context object with the snapshotted value
     return { previousTodos }
@@ -45,13 +49,13 @@ useMutation(updateTodo, {
   // When mutate is called:
   onMutate: async newTodo => {
     // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
-    await queryClient.cancelQueries(['todos', newTodo.id])
+    await queryClient.cancelQueries(['todos', {id: newTodo.id}])
 
     // Snapshot the previous value
-    const previousTodo = queryClient.getQueryData(['todos', newTodo.id])
+    const previousTodo = _.cloneDeep(queryClient.getQueryData(['todos', newTodo.id]))
 
     // Optimistically update to the new value
-    queryClient.setQueryData(['todos', newTodo.id], newTodo)
+    queryClient.setQueryData(['todos', {id: newTodo.id}], _.cloneDeep(newTodo))
 
     // Return a context with the previous and new todo
     return { previousTodo, newTodo }
@@ -65,7 +69,7 @@ useMutation(updateTodo, {
   },
   // Always refetch after error or success:
   onSettled: newTodo => {
-    queryClient.invalidateQueries(['todos', newTodo.id])
+    queryClient.invalidateQueries(['todos', {id: newTodo.id}])
   },
 })
 ```

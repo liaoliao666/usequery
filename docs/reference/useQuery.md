@@ -4,23 +4,7 @@ title: useQuery
 ---
 
 ```js
-const {
-  data,
-  error,
-  failureCount,
-  isError,
-  isFetchedAfterMount,
-  isFetching,
-  isIdle,
-  isLoading,
-  isPlaceholderData,
-  isPreviousData,
-  isStale,
-  isSuccess,
-  refetch,
-  remove,
-  status,
-} = useQuery(queryKey, queryFn?, {
+const result = useQuery(queryKey, queryFn?, {
   cacheTime,
   enabled,
   initialData,
@@ -45,6 +29,24 @@ const {
   suspense,
   useErrorBoundary,
 })
+
+const const {
+  data,
+  error,
+  failureCount,
+  isError,
+  isFetchedAfterMount,
+  isFetching,
+  isIdle,
+  isLoading,
+  isPlaceholderData,
+  isPreviousData,
+  isStale,
+  isSuccess,
+  refetch,
+  remove,
+  status,
+} = toRefs(result)
 
 // or using the object syntax
 

@@ -150,11 +150,11 @@ const routesConfig = [
         path: '/guides/query-filters',
         editUrl: '/guides/query-filters.md',
       },
-      {
-        title: 'SSR & Next.js',
-        path: '/guides/ssr',
-        editUrl: '/guides/ssr.md',
-      },
+      // {
+      //   title: 'SSR & Next.js',
+      //   path: '/guides/ssr',
+      //   editUrl: '/guides/ssr.md',
+      // },
       {
         title: 'Caching',
         path: '/guides/caching',
@@ -170,13 +170,13 @@ const routesConfig = [
         path: '/guides/suspense',
         editUrl: '/guides/suspense.md',
       },
+      // {
+      //   title: 'Testing',
+      //   path: '/guides/testing',
+      //   editUrl: '/guides/testing.md',
+      // },
       {
-        title: 'Testing',
-        path: '/guides/testing',
-        editUrl: '/guides/testing.md',
-      },
-      {
-        title: 'Does this replace [Redux, MobX, etc]?',
+        title: 'Does this replace Vuex?',
         path: '/guides/does-this-replace-client-state',
         editUrl: '/guides/does-this-replace-client-state.md',
       },
@@ -231,35 +231,15 @@ const routesConfig = [
         path: '/examples/suspense',
         editUrl: '/examples/suspense.mdx',
       },
-      {
-        title: 'Default Query Function',
-        path: '/examples/default-query-function',
-        editUrl: '/examples/default-query-function.mdx',
-      },
-      {
-        title: 'Playground',
-        path: '/examples/playground',
-        editUrl: '/examples/playground.mdx',
-      },
+      // {
+      //   title: 'Playground',
+      //   path: '/examples/playground',
+      //   editUrl: '/examples/playground.mdx',
+      // },
       {
         title: 'Prefetching',
         path: '/examples/prefetching',
         editUrl: '/examples/prefetching.mdx',
-      },
-      {
-        title: 'Star Wars',
-        path: '/examples/star-wars',
-        editUrl: '/examples/star-wars.mdx',
-      },
-      {
-        title: 'Rick And Morty',
-        path: '/examples/rick-morty',
-        editUrl: '/examples/rick-morty.mdx',
-      },
-      {
-        title: 'Next.js',
-        path: '/examples/nextjs',
-        editUrl: '/examples/nextjs.mdx',
       },
     ],
   },
@@ -352,11 +332,6 @@ const routesConfig = [
         title: 'onlineManager',
         path: '/reference/onlineManager',
         editUrl: '/reference/onlineManager.md',
-      },
-      {
-        title: 'setLogger',
-        path: '/reference/setLogger',
-        editUrl: '/reference/setLogger.md',
       },
       {
         title: 'hydration/Hydrate',

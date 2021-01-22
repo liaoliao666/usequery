@@ -4,6 +4,12 @@ title: useInfiniteQuery
 ---
 
 ```js
+const query = useInfiniteQuery(queryKey, ({ pageParam = 1 }) => fetchPage(pageParam), {
+  ...options,
+  getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
+  getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
+})
+
 const {
   fetchNextPage,
   fetchPreviousPage,
@@ -12,11 +18,7 @@ const {
   isFetchingNextPage,
   isFetchingPreviousPage,
   ...result
-} = useInfiniteQuery(queryKey, ({ pageParam = 1 }) => fetchPage(pageParam), {
-  ...options,
-  getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
-  getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
-})
+} = toRefs(query)
 ```
 
 **Options**

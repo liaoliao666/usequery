@@ -25,53 +25,52 @@ Consider the following example where we would ideally want to increment a pageIn
 
 ```js
 function Todos() {
-  const [page, setPage] = React.useState(0)
+  const page = ref(0)
 
   const fetchProjects = (page = 0) => fetch('/api/projects?page=' + page)
 
-  const {
-    isLoading,
-    isError,
-    error,
-    data,
-    isFetching,
-    isPreviousData,
-  } = useQuery(['projects', page], () => fetchProjects(page), { keepPreviousData : true })
-
-  return (
-    <div>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : isError ? (
-        <div>Error: {error.message}</div>
-      ) : (
-        <div>
-          {data.projects.map(project => (
-            <p key={project.id}>{project.name}</p>
-          ))}
-        </div>
-      )}
-      <span>Current Page: {page + 1}</span>
-      <button
-        onClick={() => setPage(old => Math.max(old - 1, 0))}
-        disabled={page === 0}
-      >
-        Previous Page
-      </button>{' '}
-      <button
-        onClick={() => {
-          if (!isPreviousData && data.hasMore) {
-            setPage(old => old + 1)
-          }
-        }}
-        // Disable the Next Page button until we know a next page is available
-        disabled={isPreviousData || !data.hasMore}
-      >
-        Next Page
-      </button>
-      {isFetching ? <span> Loading...</span> : null}{' '}
-    </div>
+  const query = useQuery(
+    ['projects', reactive({ page })],
+    () => fetchProjects(page.value),
+    { keepPreviousData: true }
   )
+
+  return () => {
+    return (
+      <div>
+        {query.isLoading ? (
+          <div>Loading...</div>
+        ) : iquery.sError ? (
+          <div>Error: {query.error.message}</div>
+        ) : (
+          <div>
+            {query.data.projects.map(project => (
+              <p key={project.id}>{project.name}</p>
+            ))}
+          </div>
+        )}
+        <span>Current Page: {page.value + 1}</span>
+        <button
+          onClick={(page.value = Math.max(page.value - 1, 0))}
+          disabled={page.value === 0}
+        >
+          Previous Page
+        </button>{' '}
+        <button
+          onClick={() => {
+            if (!query.isPreviousData && query.data.hasMore) {
+              page.value = page.value + 1
+            }
+          }}
+          // Disable the Next Page button until we know a next page is available
+          disabled={query.isPreviousData || !query.data.hasMore}
+        >
+          Next Page
+        </button>
+        {query.isFetching ? <span> Loading...</span> : null}{' '}
+      </div>
+    )
+  }
 }
 ```
 

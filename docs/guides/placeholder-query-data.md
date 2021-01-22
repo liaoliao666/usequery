@@ -46,12 +46,12 @@ In some circumstances, you may be able to provide the placeholder data for a que
 
 ```js
 function Todo({ blogPostId }) {
-  const result = useQuery(['blogPost', blogPostId], () => fetch('/blogPosts'), {
+  const result = useQuery(reactive(['blogPost', { blogPostId }]), () => fetch('/blogPosts'), {
     placeholderData: () => {
       // Use the smaller/preview version of the blogPost from the 'blogPosts' query as the placeholder data for this blogPost query
       return queryClient
         .getQueryData('blogPosts')
-        ?.find(d => d.id === blogPostId)
+        ?.find(d => d.id === unref(blogPostId))
     },
   })
 }

@@ -21,13 +21,15 @@ const queryClient = new QueryClient({
   },
 })
 
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <YourApp />
-    </QueryClientProvider>
-  )
-}
+const App = defineComponent({
+  render() {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <YourApp />
+      </QueryClientProvider>
+    )
+  }
+})
 
 // All you have to do now is pass a key!
 function Posts() {
@@ -38,8 +40,8 @@ function Posts() {
 
 // You can even leave out the queryFn and just go straight into options
 function Post({ postId }) {
-  const { status, data, error, isFetching } = useQuery(`/posts/${postId}`, {
-    enabled: !!postId,
+  const { status, data, error, isFetching } = useQuery([`/posts`, reactive({postId})], {
+    enabled: computed(() => !!unref(postId)),
   })
 
   // ...

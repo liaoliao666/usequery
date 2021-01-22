@@ -11,29 +11,31 @@ Here's an example of a mutation that adds a new todo the server:
 function App() {
   const mutation = useMutation(newTodo => axios.post('/todos', newTodo))
 
-  return (
-    <div>
-      {mutation.isLoading ? (
-        'Adding todo...'
-      ) : (
-        <>
-          {mutation.isError ? (
-            <div>An error occurred: {mutation.error.message}</div>
-          ) : null}
+  return () => {
+    return (
+      <div>
+        {mutation.isLoading ? (
+          'Adding todo...'
+        ) : (
+          <>
+            {mutation.isError ? (
+              <div>An error occurred: {mutation.error.message}</div>
+            ) : null}
 
-          {mutation.isSuccess ? <div>Todo added!</div> : null}
+            {mutation.isSuccess ? <div>Todo added!</div> : null}
 
-          <button
-            onClick={() => {
-              mutation.mutate({ id: new Date(), title: 'Do Laundry' })
-            }}
-          >
-            Create Todo
-          </button>
-        </>
-      )}
-    </div>
-  )
+            <button
+              onClick={() => {
+                mutation.mutate({ id: new Date(), title: 'Do Laundry' })
+              }}
+            >
+              Create Todo
+            </button>
+          </>
+        )}
+      </div>
+    )
+  }
 }
 ```
 
@@ -51,23 +53,25 @@ Beyond those primary state, more information is available depending on the state
 
 In the example above, you also saw that you can pass variables to your mutations function by calling the `mutate` function with a **single variable or object**.
 
-Even with just variables, mutations aren't all that special, but when used with the `onSuccess` option, the [Query Client's `invalidateQueries` method](../reference/QueryClient#queryclientinvalidatequeries) and the [Query Client's `setQueryData` method](../reference/QueryClient#queryclientsetquerydata), mutations become a very powerful tool.
+Even with just variables, mutations aren't all that special, but when used with the `onSuccess` option, the [Query Client's `invalidateQueries` method](/reference/QueryClient#queryclientinvalidatequeries) and the [Query Client's `setQueryData` method](/reference/QueryClient#queryclientsetquerydata), mutations become a very powerful tool.
 
 > IMPORTANT: The `mutate` function is an asynchronous function, which means you cannot use it directly in an event callback. If you need to access the event in `onSubmit` you need to wrap `mutate` in another function. This is due to [React event pooling](https://reactjs.org/docs/events.html#event-pooling).
 
 ```js
 // This will not work
-const CreateTodo = () => {
+const CreateTodo =  defineComponent(() => {
   const mutation = useMutation(event => {
     event.preventDefault()
     return fetch('/api', new FormData(event.target))
   })
 
-  return <form onSubmit={mutation.mutate}>...</form>
-}
+  return () => {
+    return <form onSubmit={mutation.mutate}>...</form>
+  }
+})
 
 // This will work
-const CreateTodo = () => {
+const CreateTodo = defineComponent(() => {
   const mutation = useMutation(formData => {
     return fetch('/api', formData)
   })
@@ -76,8 +80,10 @@ const CreateTodo = () => {
     mutation.mutate(new FormData(event.target))
   }
 
-  return <form onSubmit={onSubmit}>...</form>
-}
+  return () => {
+    return <form onSubmit={onSubmit}>...</form>
+  }
+})
 ```
 
 ## Resetting Mutation State
@@ -85,7 +91,7 @@ const CreateTodo = () => {
 It's sometimes the case that you need to clear the `error` or `data` of a mutation request. To do this, you can use the `reset` function to handle this:
 
 ```js
-const CreateTodo = () => {
+const CreateTodo = defineComponent(() => {
   const [title, setTitle] = useState('')
   const mutation = useMutation(createTodo)
 
@@ -94,8 +100,8 @@ const CreateTodo = () => {
     mutation.mutate({ title })
   }
 
-  return (
-    <form onSubmit={onCreateTodo}>
+  return () => {
+    return  <form onSubmit={onCreateTodo}>
       {mutation.error && (
         <h5 onClick={() => mutation.reset()}>{mutation.error}</h5>
       )}
@@ -107,8 +113,8 @@ const CreateTodo = () => {
       <br />
       <button type="submit">Create Todo</button>
     </form>
-  )
-}
+  }
+})
 ```
 
 ## Mutation Side Effects
@@ -216,7 +222,7 @@ const queryClient = new QueryClient()
 // Define the "addTodo" mutation
 queryClient.setMutationDefaults('addTodo', {
   mutationFn: addTodo,
-  onMutate: variables => {
+  onMutate: async variables => {
     // Cancel current queries for the todos list
     await queryClient.cancelQueries('todos')
 
@@ -224,7 +230,13 @@ queryClient.setMutationDefaults('addTodo', {
     const optimisticTodo = { id: uuid(), title: variables.title }
 
     // Add optimistic todo to todos list
-    queryClient.setQueryData('todos', old => [...old, optimisticTodo])
+    queryClient.setQueryData('todos', old => {
+      // because vue will proxy this object, it will cause unnecessary error!
+      // so copy this object for not to change the original data
+      old.push(_.cloneDeep(optimisticTodo))
+
+      return old
+    })
 
     // Return context with the optimistic todo
     return { optimisticTodo }
