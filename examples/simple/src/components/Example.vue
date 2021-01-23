@@ -10,7 +10,6 @@
     <strong>🍴 {{ data.forks_count }}</strong>
     <div>{{ isFetching ? 'Updating...' : '' }}</div>
   </div>
-  );
 </template>
 
 <script>
@@ -18,11 +17,11 @@ import { toRefs } from 'vue'
 import { useQuery } from 'vu-query'
 
 export default {
-  async setup() {
+  setup() {
     const query = useQuery('repoData', () =>
-      fetch(
-        'https://api.github.com/repos/tannerlinsley/react-query'
-      ).then(res => res.json())
+      fetch('https://api.github.com/repos/liaoliao666/vu-query').then(res =>
+        res.json()
+      )
     )
 
     const { data, isFetching, isLoading, error } = toRefs(query)
