@@ -190,17 +190,27 @@ queryClient.setQueryData(queryKey, updater)
   - If non-function is passed, the data will be updated to this value
   - If a function is passed, it will receive the old data value and be expected to return a data.
 ::: warning
-could not set a reactive value, for example
+could not set a `reactive` value as params of setQueryData, like following
 ```js
   const todo = reactive({id: 1, ...})
 
-  setQueryData(queryKey, { todo }) // it will be get an error
-  // or
-  setQueryData(queryKey, old => {
-    old.push(todo)
+  // bad
+  // it will be get an error
+  setQueryData(queryKey, { todo })
 
+  // good
+  setQueryData(queryKey, { todo: _.deepClone(todo) })
+
+  // still bad
+  setQueryData(queryKey, old => {
+    return [...old, todo]
+  })
+
+  // best
+  setQueryData(queryKey, old => {
+    old.push(_.clone(todo))
     return old
-  }) // it will be get an error
+  })
 ```
 :::
 

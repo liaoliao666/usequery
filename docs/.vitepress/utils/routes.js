@@ -5,11 +5,6 @@ const routesConfig = [
     heading: true,
     routes: [
       {
-        title: 'Overview',
-        path: '/overview',
-        editUrl: '/overview.md',
-      },
-      {
         title: 'Installation',
         path: '/installation',
         editUrl: '/installation.md',

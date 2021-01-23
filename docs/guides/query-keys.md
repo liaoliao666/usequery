@@ -64,7 +64,7 @@ useQuery(['todos', undefined, page, status], ...)
 ## If your query function depends on a variable, include it in your query key
 
 ::: warning
-pls dont set any ref variables in the array of reactive, just can only set it in the object of reactive. because it could not automatically unwrap ref to ref.value
+pls dont set any ref variables in proxied array, just can only set it in proxied object. because it could not automatically unwrap ref to ref.value, like following
 
 ```{6}
 const Todos = defineComponent({
