@@ -1,1 +1,0 @@
-import{l as s,f as n,G as e}from"./framework.dc3bd9a4.js";const t='{"title":"useIsFetching","description":"","frontmatter":{"id":"useIsFetching","title":"useIsFetching"},"relativePath":"reference/useIsFetching.md","lastUpdated":1611417790376}',a={},o=e('',6);a.render=function(e,t,a,i,c,p){return s(),n("div",null,[o])};export default a;export{t as __pageData};
