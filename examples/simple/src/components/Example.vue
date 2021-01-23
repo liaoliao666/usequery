@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div v-if="isLoading">Loading...</div>
+  <div v-else-if="error">An error has occurred: {{ error.message }}</div>
+  <div v-else>
     <h1>{{ data.name }}</h1>
     <p>{{ data.description }}</p>
     <strong>👀 {{ data.subscribers_count }}</strong
@@ -12,8 +14,8 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue'
-import usePost from '../composable/usePost'
+import { toRefs } from 'vue'
+import { useQuery } from 'vu-query'
 
 export default {
   async setup() {
@@ -23,11 +25,13 @@ export default {
       ).then(res => res.json())
     )
 
-    const { data, isFetching } = toRefs(query)
+    const { data, isFetching, isLoading, error } = toRefs(query)
 
     return {
       data,
       isFetching,
+      isLoading,
+      error,
     }
   },
 }
