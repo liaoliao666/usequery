@@ -42,51 +42,48 @@ With this information, we can create a "Load More" UI by:
 ```js
 import { useInfiniteQuery } from 'vu-query'
 
-function Projects() {
+const Projects = defineComponent({
+  setup() {
   const fetchProjects = ({ pageParam = 0 }) =>
     fetch('/api/projects?cursor=' + pageParam)
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery('projects', fetchProjects, {
+  const query = useInfiniteQuery('projects', fetchProjects, {
     getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
   })
 
-  return status === 'loading' ? (
-    <p>Loading...</p>
-  ) : status === 'error' ? (
-    <p>Error: {error.message}</p>
-  ) : (
-    <>
-      {data.pages.map((group, i) => (
-        <React.Fragment key={i}>
-          {group.projects.map(project => (
-            <p key={project.id}>{project.name}</p>
-          ))}
-        </React.Fragment>
-      ))}
-      <div>
-        <button
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetchingNextPage}
-        >
-          {isFetchingNextPage
-            ? 'Loading more...'
-            : hasNextPage
-            ? 'Load More'
-            : 'Nothing more to load'}
-        </button>
-      </div>
-      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
-    </>
-  )
+
+  return () => {
+    return query.status === 'loading' ? (
+      <p>Loading...</p>
+    ) : query.status === 'error' ? (
+      <p>Error: {query.error.message}</p>
+    ) : (
+      <>
+        {query.data.pages.map((group, i) => (
+          <template key={i}>
+            {group.projects.map(project => (
+              <p key={project.id}>{project.name}</p>
+            ))}
+          </template>
+        ))}
+        <div>
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={!query.hasNextPage || query.isFetchingNextPage}
+          >
+            {query.isFetchingNextPage
+              ? 'Loading more...'
+              : query.hasNextPage
+              ? 'Load More'
+              : 'Nothing more to load'}
+          </button>
+        </div>
+        <div>{query.isFetching && !query.isFetchingNextPage ? 'Fetching...' : null}</div>
+      </>
+    )
+  }
 }
+})
 ```
 
 ## What happens when an infinite query needs to be refetched?
@@ -102,19 +99,12 @@ function Projects() {
   const fetchProjects = ({ pageParam = 0 }) =>
     fetch('/api/projects?cursor=' + pageParam)
 
-  const {
-    status,
-    data,
-    isFetching,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery('projects', fetchProjects, {
+  const query = useInfiniteQuery('projects', fetchProjects, {
     getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
   })
 
   // Pass your own page param
-  const skipToCursor50 = () => fetchNextPage({ pageParam: 50 })
+  const skipToCursor50 = () => query.fetchNextPage({ pageParam: 50 })
 }
 ```
 
@@ -135,10 +125,12 @@ Sometimes you may want to show the pages in reversed order. If this is case, you
 
 ```js
 useInfiniteQuery('projects', fetchProjects, {
-  select: data => ({
-    pages: [...data.pages].reverse(),
-    pageParams: [...data.pageParams].reverse(),
-  }),
+  select: data => {
+    data.pages.reverse()
+    data.pageParams.reverse()
+
+    return data
+  },
 })
 ```
 
@@ -147,8 +139,10 @@ useInfiniteQuery('projects', fetchProjects, {
 Manually removing first page:
 
 ```js
-queryClient.setQueryData('projects', data => ({
-  pages: data.pages.slice(1),
-  pageParams: data.pageParams.slice(1),
-}))
+queryClient.setQueryData('projects', data => {
+  data.pages.shift(),
+  data.pageParams.shift(1),
+
+  return data
+})
 ```

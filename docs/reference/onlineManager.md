@@ -18,11 +18,10 @@ Its available methods are:
 `setEventListener` can be used to set a custom event listener:
 
 ```js
-import NetInfo from '@react-native-community/netinfo'
 import { onlineManager } from 'vu-query'
 
 onlineManager.setEventListener(setOnline => {
-  return NetInfo.addEventListener(state => {
+  return CustomNetInfo.addEventListener(state => {
     setOnline(state.isConnected)
   })
 })

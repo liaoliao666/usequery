@@ -3,7 +3,7 @@ id: suspense
 title: Suspense
 ---
 
-> NOTE: Suspense mode for Vu Query is experimental, same as Suspense for data fetching itself. These APIs WILL change and should not be used in production unless you lock both your React and Vu Query versions to patch-level versions that are compatible with each other.
+> NOTE: Suspense mode for Vu Query is experimental, same as Suspense for data fetching itself. These APIs WILL change and should not be used in production unless you lock  your Vue and Vu Query versions to patch-level versions that are compatible with each other.
 
 Vu Query can also be used with Vue's new Suspense for Data Fetching API's. To enable this mode, you can set either the global or query level config's `suspense` option to `true`.
 
@@ -41,7 +41,7 @@ import { useQuery } from 'vu-query'
 useQuery(queryKey, queryFn, { suspense: true })
 ```
 
-When using suspense mode, `status` states and `error` objects are not needed and are then replaced by usage of the `Suspense` component (including the use of the `fallback` prop and Vue error boundaries for catching errors). Please read the [Resetting Error Boundaries](#resetting-error-boundaries) and look at the [Suspense Example](https://codesandbox.io/s/github/tannerlinsley/react-query/tree/master/examples/suspense) for more information on how to set up suspense mode.
+When using suspense mode, `status` states and `error` objects are not needed and are then replaced by usage of the `Suspense` component (including the use of the `fallback` prop and Vue error boundaries for catching errors). Please read the [Resetting Error Boundaries](#resetting-error-boundaries) and look at the [Suspense Example](https://codesandbox.io/s/github/liaoliao666/vu-query/tree/master/examples/suspense) for more information on how to set up suspense mode.
 
 In addition to queries behaving differently in suspense mode, mutations also behave a bit differently. By default, instead of supplying the `error` variable when a mutation fails, it will be thrown during the next render of the component it's used in and propagate to the nearest error boundary, similar to query errors. If you wish to disable this, you can set the `useErrorBoundary` option to `false`. If you wish that errors are not thrown at all, you can set the `throwOnError` option to `false` as well!
 
@@ -85,7 +85,7 @@ When using the hook it will reset any query errors within the closest `QueryErro
 
 ```js
 import { useQueryErrorResetBoundary } from 'vu-query'
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary } from 'vu-error-boundary'
 
 const App = defineComponent({
   components: {
