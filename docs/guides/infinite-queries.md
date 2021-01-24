@@ -141,7 +141,7 @@ Manually removing first page:
 ```js
 queryClient.setQueryData('projects', data => {
   data.pages.shift(),
-  data.pageParams.shift(1),
+  data.pageParams.shift(),
 
   return data
 })

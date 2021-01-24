@@ -17,7 +17,7 @@ const { isIdle, data: projects } = useQuery(
   getProjectsByUser,
   reactive({
     // The query will not execute until the userId exists
-    enabled: computed(() => !!userId.value),
+    enabled: computed(() => !!unref(userId)),
   })
 )
 
