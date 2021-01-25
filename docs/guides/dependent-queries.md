@@ -12,7 +12,7 @@ const qeury = useQuery(['user', email], getUserByEmail)
 const userId = computed(() => query?.data?.id)
 
 // Then get the user's projects
-const { isIdle, data: projects } = useQuery(
+const query = useQuery(
   ['projects', reactive({ userId })],
   getProjectsByUser,
   reactive({
@@ -20,6 +20,8 @@ const { isIdle, data: projects } = useQuery(
     enabled: computed(() => !!unref(userId)),
   })
 )
+
+const { isIdle, data: projects } = toRefs(query)
 
 // isIdle will be `true` until `enabled` is true and the query begins to fetch.
 // It will then go to the `isLoading` stage and hopefully the `isSuccess` stage :)
