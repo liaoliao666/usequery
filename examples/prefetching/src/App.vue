@@ -37,7 +37,7 @@ function Todos() {
       <div>
         {query.isLoading ? (
           <div>Loading...</div>
-        ) : iquery.sError ? (
+        ) : query.sError ? (
           <div>Error: {query.error.message}</div>
         ) : (
           <div>

@@ -117,7 +117,7 @@ const CreateTodo = defineComponent(() => {
 
 ## Mutation Side Effects
 
-`useMutation` comes with some helper options that allow quick and easy side-effects at any stage during the mutation lifecycle. These come in handy for both [invalidating and refetching queries after mutations](/guidesinvalidations-from-mutations) and even [optimistic updates](/guidesoptimistic-updates)
+`useMutation` comes with some helper options that allow quick and easy side-effects at any stage during the mutation lifecycle. These come in handy for both [invalidating and refetching queries after mutations](/guides/invalidations-from-mutations) and even [optimistic updates](/guides/optimistic-updates)
 
 ```js
 useMutation(addTodo, {
