@@ -9,10 +9,7 @@ It can be used to change the default event listeners or to manually change the o
 
 Its available methods are:
 
-- [`setEventListener`](#onlinemanagerseteventlistener)
-- [`setOnline`](#onlinemanagersetonline)
-- [`isOnline`](#onlinemanagerisonline)
-
+[[toc]]
 ## `onlineManager.setEventListener`
 
 `setEventListener` can be used to set a custom event listener:

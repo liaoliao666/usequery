@@ -16,10 +16,7 @@ const query = queryCache.find('posts')
 
 Its available methods are:
 
-- [`find`](#querycachefind)
-- [`findAll`](#querycachefindall)
-- [`subscribe`](#querycachesubscribe)
-- [`clear`](#querycacheclear)
+[[toc]]
 
 ## `queryCache.find`
 
@@ -33,8 +30,8 @@ const query = queryCache.find(queryKey)
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 **Returns**
 
@@ -53,8 +50,8 @@ const queries = queryCache.findAll(queryKey)
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 **Returns**
 

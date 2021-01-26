@@ -14,4 +14,4 @@ $ npm i vu-query
 $ yarn add vu-query
 ```
 
-> Wanna give it a spin before you download? Try out the [simple](/docs/examples/simple) or [custom-composable](/docs/examples/custom-composable) examples!
+> Wanna give it a spin before you download? Try out the [simple](./examples/simple) or [custom-composable](./examples/custom-composable) examples!

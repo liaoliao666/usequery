@@ -9,9 +9,7 @@ It can be used to change the default event listeners or to manually change the f
 
 Its available methods are:
 
-- [`setEventListener`](#focusmanagerseteventlistener)
-- [`setFocused`](#focusmanagersetfocused)
-- [`isFocused`](#focusmanagerisfocused)
+[[toc]]
 
 ## `focusManager.setEventListener`
 

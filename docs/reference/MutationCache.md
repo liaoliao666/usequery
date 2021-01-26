@@ -15,10 +15,7 @@ const mutationCache = new MutationCache()
 
 Its available methods are:
 
-- [`getAll`](#mutationcachegetall)
-- [`subscribe`](#mutationcachesubscribe)
-- [`clear`](#mutationcacheclear)
-
+[[toc]]
 ## `mutationCache.getAll`
 
 `getAll` returns all mutations within the cache.

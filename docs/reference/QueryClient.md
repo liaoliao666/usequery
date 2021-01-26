@@ -23,28 +23,7 @@ await queryClient.prefetchQuery('posts', fetchPosts)
 
 Its available methods are:
 
-- [`fetchQuery`](#queryclientfetchquery)
-- [`fetchInfiniteQuery`](#queryclientfetchinfinitequery)
-- [`prefetchQuery`](#queryclientprefetchquery)
-- [`prefetchInfiniteQuery`](#queryclientprefetchinfinitequery)
-- [`getQueryData`](#queryclientgetquerydata)
-- [`setQueryData`](#queryclientsetquerydata)
-- [`getQueryState`](#queryclientgetquerystate)
-- [`invalidateQueries`](#queryclientinvalidatequeries)
-- [`refetchQueries`](#queryclientrefetchqueries)
-- [`cancelQueries`](#queryclientcancelqueries)
-- [`removeQueries`](#queryclientremovequeries)
-- [`resetQueries`](#queryclientresetqueries)
-- [`isFetching`](#queryclientisfetching)
-- [`getDefaultOptions`](#queryclientsetdefaultoptions)
-- [`setDefaultOptions`](#queryclientgetdefaultoptions)
-- [`getQueryDefaults`](#queryclientgetquerydefaults)
-- [`setQueryDefaults`](#queryclientsetquerydefaults)
-- [`getMutationDefaults`](#queryclientgetmutationdefaults)
-- [`setMutationDefaults`](#queryclientsetmutationdefaults)
-- [`getQueryCache`](#queryclientgetquerycache)
-- [`getMutationCache`](#queryclientgetmutationcache)
-- [`clear`](#queryclientclear)
+[[toc]]
 
 **Options**
 
@@ -88,7 +67,7 @@ try {
 
 **Options**
 
-The options for `fetchQuery` are exactly the same as those of [`useQuery`](#usequery).
+The options for `fetchQuery` are exactly the same as those of [`useQuery`](./usequery).
 
 **Returns**
 
@@ -109,7 +88,7 @@ try {
 
 **Options**
 
-The options for `fetchInfiniteQuery` are exactly the same as those of [`useInfiniteQuery`](#useinfinitequery).
+The options for `fetchInfiniteQuery` are exactly the same as those of [`useInfiniteQuery`](./useinfinitequery).
 
 **Returns**
 
@@ -131,7 +110,7 @@ await queryClient.prefetchQuery(queryKey)
 
 **Options**
 
-The options for `prefetchQuery` are exactly the same as those of [`useQuery`](#usequery).
+The options for `prefetchQuery` are exactly the same as those of [`useQuery`](./usequery).
 
 **Returns**
 
@@ -148,7 +127,7 @@ await queryClient.prefetchInfiniteQuery(queryKey, queryFn)
 
 **Options**
 
-The options for `prefetchInfiniteQuery` are exactly the same as those of [`useInfiniteQuery`](#useinfinitequery).
+The options for `prefetchInfiniteQuery` are exactly the same as those of [`useInfiniteQuery`](./useinfinitequery).
 
 **Returns**
 
@@ -165,8 +144,8 @@ const data = queryClient.getQueryData(queryKey)
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 **Returns**
 
@@ -247,8 +226,8 @@ console.log(state.dataUpdatedAt)
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 ## `queryClient.invalidateQueries`
 
@@ -267,8 +246,8 @@ await queryClient.invalidateQueries('posts', {
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
   - `refetchActive: Boolean`
     - Defaults to `true`
     - When set to `false`, queries that match the refetch predicate and are actively being rendered via `useQuery` and friends will NOT be refetched in the background, and only marked as invalid.
@@ -301,8 +280,8 @@ await queryClient.refetchQueries(['posts', 1], { active: true, exact: true })
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 - `refetchOptions?: RefetchOptions`:
   - `throwOnError?: boolean`
     - When set to `true`, this method will throw if any of the query refetch tasks fail.
@@ -323,8 +302,8 @@ await queryClient.cancelQueries('posts', { exact: true })
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 **Returns**
 
@@ -340,8 +319,8 @@ queryClient.removeQueries(queryKey, { exact: true })
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 **Returns**
 
@@ -364,8 +343,8 @@ queryClient.resetQueries(queryKey, { exact: true })
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 - `resetOptions?: ResetOptions`:
   - `throwOnError?: boolean`
     - When set to `true`, this method will throw if any of the query refetch tasks fail.
@@ -384,12 +363,12 @@ if (queryClient.isFetching()) {
 }
 ```
 
-Vu Query also exports a handy [`useIsFetching`](#useisfetching) hook that will let you subscribe to this state in your components without creating a manual subscription to the query cache.
+Vu Query also exports a handy [`useIsFetching`](./useisfetching) hook that will let you subscribe to this state in your components without creating a manual subscription to the query cache.
 
 **Options**
 
-- `queryKey?: QueryKey`: [Query Keys](/guides/query-keys)
-- `filters?: QueryFilters`: [Query Filters](/guides/query-filters)
+- `queryKey?: QueryKey`: [Query Keys](../guides/query-keys)
+- `filters?: QueryFilters`: [Query Filters](../guides/query-filters)
 
 **Returns**
 
@@ -437,7 +416,7 @@ function Component() {
 
 **Options**
 
-- `queryKey: QueryKey`: [Query Keys](/guides/query-keys)
+- `queryKey: QueryKey`: [Query Keys](../guides/query-keys)
 - `options: QueryOptions`
 
 ## `queryClient.getMutationDefaults`

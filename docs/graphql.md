@@ -7,4 +7,4 @@ Because Vu Query's fetching mechanisms are agnostically built on Promises, you c
 
 ## Examples
 
-- [basic-graphql-request](/examples/basic-graphql-request) (The "basic" example, but implemented with [`graphql-request`](https://github.com/prisma-labs/graphql-request))
+- [basic-graphql-request](./examples/basic-graphql-request) (The "basic" example, but implemented with [`graphql-request`](https://github.com/prisma-labs/graphql-request))
