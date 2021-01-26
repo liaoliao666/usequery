@@ -253,7 +253,7 @@ export function partialDeepEqual(a: any, b: any): boolean {
 
 function checkIsPassProxy(data: unknown) {
   if (isProxy(data))
-    throw new Error('could not set proxy to setQueryData or select')
+    throw new Error('could not set proxied data to setQueryData or select')
 }
 
 /**
