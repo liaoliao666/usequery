@@ -253,7 +253,7 @@ export function partialDeepEqual(a: any, b: any): boolean {
 
 function checkIsPassProxy(data: unknown) {
   if (isProxy(data))
-    throw new Error('could not set proxy to setQueryData or select')
+    throw new Error('could not set proxied data to setQueryData or select')
 }
 
 /**
@@ -309,8 +309,8 @@ export function replaceEqualDeep(a: any, b: any) {
  * it will replace any equal shallow children of `b` with those of `a`.
  * This can be used for structural sharing between JSON values for example.
  */
-export function replaceShallowEqualDeep<T>(a: unknown, b: T): T
-export function replaceShallowEqualDeep(a: any, b: any) {
+export function replaceEqualShallow<T>(a: unknown, b: T): T
+export function replaceEqualShallow(a: any, b: any) {
   if (a === b) return a
 
   const array = Array.isArray(a) && Array.isArray(b)

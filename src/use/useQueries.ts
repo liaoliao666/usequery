@@ -3,7 +3,7 @@ import { reactive, readonly, watchEffect, onMounted, onUnmounted } from 'vue'
 import { QueriesObserver } from '../core/queriesObserver'
 import { useQueryClient } from './QueryClientProvider'
 import { UseQueryOptions, UseQueryResult } from './types'
-import { replaceShallowEqualDeep } from '../core/utils'
+import { replaceEqualShallow } from '../core/utils'
 
 export function useQueries(
   queriesArg: UseQueryOptions[] | (() => UseQueryOptions[])
@@ -32,7 +32,7 @@ export function useQueries(
   // Subscribe to the observer
   onMounted(() => {
     unsubscribe = observer.subscribe(result => {
-      replaceShallowEqualDeep(currentResult, result)
+      replaceEqualShallow(currentResult, result)
     })
   })
   onUnmounted(() => {
