@@ -1,1 +1,0 @@
-import{l as t,f as e,G as n}from"./framework.dc3bd9a4.js";const o='{"title":"useMutation","description":"","frontmatter":{"id":"useMutation","title":"useMutation"},"relativePath":"reference/useMutation.md","lastUpdated":1611637296772}',a={},i=n('',5);a.render=function(n,o,a,s,l,r){return t(),e("div",null,[i])};export default a;export{o as __pageData};
