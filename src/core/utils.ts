@@ -271,12 +271,10 @@ export function replaceEqualDeep(a: any, b: any) {
     if (array) {
       const bSize = b.length
       if (a.length > bSize) {
-        // omit array keys
         a.splice(bSize)
       }
 
       for (let i = 0; i < bSize; i++) {
-        // pick array keys
         checkIsPassProxy(b[i])
         a[i] = replaceEqualDeep(a[i], b[i])
       }
@@ -288,14 +286,12 @@ export function replaceEqualDeep(a: any, b: any) {
       for (let i = 0, len = aKeys.length; i < len; i++) {
         const key = aKeys[i]
         if (!hash.has(key)) {
-          // omit object keys
           delete a[key]
         }
       }
 
       for (let i = 0, len = bKeys.length; i < len; i++) {
         const key = bKeys[i]
-        // pick object keys
         checkIsPassProxy(b[key])
         a[key] = replaceEqualDeep(a[key], b[key])
       }
@@ -319,12 +315,10 @@ export function replaceEqualShallow(a: any, b: any) {
   if (isSameObject) {
     if (array) {
       const bSize = b.length
-      // omit array keys
       if (a.length > bSize) {
         a.splice(bSize)
       }
 
-      // pick array keys
       for (let i = 0; i < bSize; i++) {
         a[i] = b[i]
       }
@@ -336,14 +330,12 @@ export function replaceEqualShallow(a: any, b: any) {
       for (let i = 0, len = aKeys.length; i < len; i++) {
         const key = aKeys[i]
         if (!hash.has(key)) {
-          // omit object keys
           delete a[key]
         }
       }
 
       for (let i = 0, len = bKeys.length; i < len; i++) {
         const key = bKeys[i]
-        // pick object keys
         a[key] = b[key]
       }
     }
