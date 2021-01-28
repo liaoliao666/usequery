@@ -70,7 +70,7 @@ export function useMutation<
   const queryClient = useQueryClient()
 
   // Create mutation observer
-  let observer: MutationObserver<TData, TError, TVariables, TContext>
+  let observer!: MutationObserver<TData, TError, TVariables, TContext>
 
   // Create mutation currentResult
   let currentResult!: UseMutationResult<TData, TError, TVariables, TContext>
@@ -118,16 +118,18 @@ export function useMutation<
     unsubscribe?.()
   })
 
-  watchEffect(
-    () => {
-      if (currentResult.error && observer.options.useErrorBoundary) {
-        throw currentResult.error
+  if (observer.options.useErrorBoundary) {
+    watchEffect(
+      () => {
+        if (currentResult.error) {
+          throw currentResult.error
+        }
+      },
+      {
+        flush: 'pre',
       }
-    },
-    {
-      flush: 'pre',
-    }
-  )
+    )
+  }
 
   return readonly(currentResult) as UseMutationResult<
     TData,
